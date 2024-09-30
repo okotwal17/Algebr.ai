@@ -1,0 +1,135 @@
+/* Global Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body, html {
+    height: 100%;
+    overflow: hidden;
+}
+
+body {
+    background-color: #6bb3ff; /* Lighter Blue background */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+/* Bubble styles with spherical effect */
+.bubble {
+    position: absolute;
+    background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.1));
+    border-radius: 50%;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    animation: float 8s ease-in-out forwards, fadeIn 0.5s ease forwards; /* Add floating and fading animation */
+}
+
+/* Keyframes for floating animation */
+@keyframes float {
+    0% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-50px); /* Move the bubble upwards */
+        opacity: 0;
+    }
+}
+
+/* Keyframes for fading in effect */
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+.bubble:hover {
+    opacity: 0;  /* Bubbles will disappear on hover */
+    transition: opacity 0.2s ease;
+}
+
+/* Container styling */
+.container {
+    background-color: #fff;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    max-width: 400px;
+    width: 100%;
+    z-index: 1;
+}
+
+h1 {
+    color: #333;
+    margin-bottom: 20px;
+    font-size: 24px;
+}
+
+.welcome-text {
+    color: #555;
+    margin-bottom: 30px;
+}
+
+.login-box h2 {
+    margin-bottom: 20px;
+    color: #444;
+    font-size: 20px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+}
+
+label {
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #333;
+}
+
+input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    font-size: 16px;
+    width: 100%;
+}
+
+button {
+    padding: 10px;
+    background-color: #0056b3;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #003f8a;
+}
+
+.note {
+    margin-top: 10px;
+    color: #777;
+    font-size: 14px;
+}
+
+.error-message {
+    margin-top: 15px;
+    color: #e74c3c;
+    font-size: 14px;
+}
