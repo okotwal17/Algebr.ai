@@ -52,6 +52,15 @@ body {
     }
 }
 
+@keyframes fadeOut {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
 .bubble:hover {
     opacity: 0;  /* Bubbles will disappear on hover */
     transition: opacity 0.2s ease;
@@ -128,8 +137,9 @@ button:hover {
     font-size: 14px;
 }
 
-.error-message {
-    margin-top: 15px;
-    color: #e74c3c;
-    font-size: 14px;
+.error-messages {
+    color: red; /* Change text color to red for visibility */
+    list-style-type: none; /* Remove bullet points */
+    margin: 10px 0; /* Add some spacing */
+    padding: 0; /* Remove default padding */
 }

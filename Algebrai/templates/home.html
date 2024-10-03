@@ -1,0 +1,33 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Algebra Learning Platform - Main</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">  <!-- Update with the correct path -->
+    <script defer src="{% static 'javascript/script.js' %}"></script>  <!-- Update with the correct path -->
+</head>
+<body>
+    <div class="container">
+        <h1>Hello, <span id="user-name">{{ user.username }}</span>!</h1>  <!-- Display logged-in user's name -->
+        <p class="intro-text">What would you like to work on today? Choose from the options below to start your learning journey.</p>
+        <div class="options">
+            <div class="option-box">
+                <h3>Learn Basic Concepts</h3>
+                <p>Start with the basics to build a strong foundation in algebra:</p>
+                <ul>
+                    <li><a href="#">Linear Equations</a></li>
+                    <li><a href="#">Quadratic Equations</a></li>
+                    <li><a href="#">Polynomials</a></li>
+                    <li><a href="#">Functions</a></li>
+                </ul>
+            </div>
+            <div class="option-box">
+                <h3>Study for a Test</h3>
+                <p>Prepare for upcoming tests with customized practice sets.</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

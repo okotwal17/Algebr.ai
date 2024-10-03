@@ -1,6 +1,7 @@
 document.addEventListener("DOMContentLoaded", function() {
     console.log("JavaScript is working!");
-    // Function to generate random bubbles
+
+    // Function to generate random bubbles (this part remains the same)
     function createBubble() {
         const bubble = document.createElement("div");
         bubble.classList.add("bubble");
@@ -35,4 +36,17 @@ document.addEventListener("DOMContentLoaded", function() {
 
     // Create a new bubble every 0.5 second
     setInterval(createBubble, 500);
+
+    // Automatically dismiss error messages after a few seconds
+    const errorMessages = document.querySelectorAll('.error-messages li');
+    if (errorMessages.length > 0) {
+        setTimeout(() => {
+            errorMessages.forEach(message => {
+                message.style.opacity = "0"; // Smoothly fade out error messages
+                setTimeout(() => {
+                    message.remove(); // Remove the message after fade-out
+                }, 500); // Matches the fade-out duration
+            });
+        }, 5000); // Time before error messages disappear (5 seconds)
+    }
 });
