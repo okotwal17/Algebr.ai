@@ -2,37 +2,94 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Algebr.ai- Main</title>
-    <link rel="stylesheet" href="{% static 'css/home.css' %}"> <!-- Ensure this path is correct -->
-    <script defer src="{% static 'javascript/home.js' %}"></script>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Algebra Learning Platform</title>
+   <link rel="stylesheet" href="{% static 'css/home.css' %}">
+   <script src="{% static 'javascript/home.js' %}"></script>
 </head>
 <body>
-    <div class="wave-container">
-        <div class="wave"></div>
-    </div>
-    <div class="particles"></div>
 
-    <div class="container">
+
+   <div class="background">
+       <!-- Floating Background Bubbles -->
+       <div class="bubble" style="--size:6rem; --distance:6rem; --position:20%; --time:15s; --delay:-2s;"></div>
+       <div class="bubble" style="--size:4rem; --distance:8rem; --position:60%; --time:20s; --delay:-5s;"></div>
+       <div class="bubble" style="--size:3rem; --distance:6rem; --position:80%; --time:25s; --delay:-7s;"></div>
+       <div class="bubble" style="--size:5rem; --distance:10rem; --position:30%; --time:12s; --delay:-3s;"></div>
+   </div>
+
+
+   <header>
         <h1>Hello, <span id="user-name">{{ user.username }}</span>!</h1>
-        <p class="intro-text">What would you like to work on today? Choose from the options below to start your learning journey.</p>
-        <div class="options">
-            <div class="option-box">
-                <h3>Learn Basic Concepts</h3>
-                <p>Start with the basics to build a strong foundation in algebra:</p>
-                <ul>
-                    <li><a href="#">Linear Equations</a></li>
-                    <li><a href="#">Quadratic Equations</a></li>
-                    <li><a href="#">Polynomials</a></li>
-                    <li><a href="#">Functions</a></li>
-                </ul>
-            </div>
-            <div class="option-box">
-                <h3>Study for a Test</h3>
-                <p>Prepare for upcoming tests with customized practice sets.</p>
-            </div>
-        </div>
-    </div>
+        <div class="scroll-indicator">↓ Scroll Down</div>
+   </header>
+
+
+   <div class="container">
+
+
+       <!-- Learning Algebra Section -->
+       <section id="learning" class="swipe-section">
+           <h2>Learning Algebra with AI</h2>
+           <p>Swipe through the key algebra topics below. Click on any topic to start learning!</p>
+           <div class="topic-slider">
+               <div class="slide">1. Solving Linear Equations</div>
+               <div class="slide">2. Quadratic Equations</div>
+               <div class="slide">3. Factoring Expressions</div>
+               <div class="slide">4. Simplifying Algebraic Expressions</div>
+               <div class="slide">5. Graphing Linear Equations</div>
+               <div class="slide">6. Systems of Equations</div>
+               <div class="slide">7. Polynomials</div>
+               <div class="slide">8. Rational Expressions</div>
+               <div class="slide">9. Inequalities</div>
+               <div class="slide">10. Exponential Functions</div>
+           </div>
+       </section>
+
+
+       <!-- Practice Test Section -->
+       <section id="practice-test" class="swipe-section">
+           <h2>Generate Your Practice Test</h2>
+           <form>
+               <!-- Topic Selection -->
+               <label for="topic">Choose an algebra topic:</label>
+               <select id="topic" name="topic">
+                   <option value="linear_equations">Solving Linear Equations</option>
+                   <option value="quadratic_equations">Quadratic Equations</option>
+                   <option value="factoring">Factoring Expressions</option>
+                   <option value="simplifying">Simplifying Algebraic Expressions</option>
+                   <option value="graphing">Graphing Linear Equations</option>
+                   <option value="systems">Systems of Equations</option>
+                   <option value="polynomials">Polynomials</option>
+                   <option value="rational_expressions">Rational Expressions</option>
+                   <option value="inequalities">Inequalities</option>
+                   <option value="exponential_functions">Exponential Functions</option>
+               </select>
+
+
+               <!-- Difficulty Level -->
+               <label for="difficulty">Select difficulty level:</label>
+               <select id="difficulty" name="difficulty">
+                   <option value="easy">Easy</option>
+                   <option value="medium">Medium</option>
+                   <option value="hard">Hard</option>
+               </select>
+
+
+               <!-- Additional Questions -->
+               <label for="additional-questions">Enter the number of additional questions:</label>
+               <input type="text" id="additional-questions" name="additional-questions" placeholder="e.g. 5">
+
+
+               <!-- Submit Button -->
+               <button type="submit">Generate Test</button>
+           </form>
+       </section>
+
+
+   </div>
+
+
 </body>
 </html>

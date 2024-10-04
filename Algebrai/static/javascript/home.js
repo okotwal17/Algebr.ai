@@ -1,37 +1,65 @@
-// Floating Particles Animation
-const particlesContainer = document.querySelector('.particles');
+// Swipe gesture detection for mobile users
+const swipeSections = document.querySelectorAll('.swipe-section');
+let startX, endX;
 
-for (let i = 0; i < 50; i++) {
-    const particle = document.createElement('div');
-    particle.classList.add('particle');
-    particle.style.left = `${Math.random() * 100}vw`;
-    particle.style.top = `${Math.random() * 100}vh`;
-    particle.style.animationDuration = `${Math.random() * 5 + 2}s`;  // Varying duration
-    particle.style.animationDelay = `${Math.random() * 2}s`;  // Varying start time
-    particlesContainer.appendChild(particle);
+
+function handleTouchStart(event) {
+   startX = event.touches[0].clientX;
 }
 
-// Cursor interaction with particles
-document.addEventListener('mousemove', (event) => {
-    const mouseX = event.clientX;
-    const mouseY = event.clientY;
 
-    document.querySelectorAll('.particle').forEach(particle => {
-        const particleX = particle.offsetLeft + 5;
-        const particleY = particle.offsetTop + 5;
+function handleTouchMove(event) {
+   endX = event.touches[0].clientX;
+}
 
-        const distX = mouseX - particleX;
-        const distY = mouseY - particleY;
-        const distance = Math.sqrt(distX * distX + distY * distY);
 
-        if (distance < 150) {
-            const angle = Math.atan2(distY, distX);
-            const moveX = Math.cos(angle) * 100;
-            const moveY = Math.sin(angle) * 100;
+function handleTouchEnd(event) {
+   if (startX > endX + 50) {
+       // Swipe left to the next section
+       nextSection();
+   } else if (startX < endX - 50) {
+       // Swipe right to the previous section
+       previousSection();
+   }
+}
 
-            particle.style.transform = `translate(${moveX}px, ${moveY}px)`;
-        } else {
-            particle.style.transform = '';
-        }
-    });
+
+swipeSections.forEach(section => {
+   section.addEventListener('touchstart', handleTouchStart);
+   section.addEventListener('touchmove', handleTouchMove);
+   section.addEventListener('touchend', handleTouchEnd);
+});
+
+
+let currentSectionIndex = 0;
+
+
+function nextSection() {
+   if (currentSectionIndex < swipeSections.length - 1) {
+       currentSectionIndex++;
+       scrollToSection(currentSectionIndex);
+   }
+}
+
+
+function previousSection() {
+   if (currentSectionIndex > 0) {
+       currentSectionIndex--;
+       scrollToSection(currentSectionIndex);
+   }
+}
+
+
+function scrollToSection(index) {
+   swipeSections[index].scrollIntoView({ behavior: 'smooth' });
+}
+
+
+
+
+document.addEventListener("DOMContentLoaded", function() {
+   const username = prompt("Please enter your name:");
+   if (username) {
+       document.getElementById("username").textContent = username;
+   }
 });
