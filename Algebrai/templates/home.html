@@ -4,13 +4,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Algebra Learning Platform - Main</title>
-    <link rel="stylesheet" href="{% static 'css/styles.css' %}">  <!-- Update with the correct path -->
-    <script defer src="{% static 'javascript/script.js' %}"></script>  <!-- Update with the correct path -->
+    <title>Algebr.ai- Main</title>
+    <link rel="stylesheet" href="{% static 'css/home.css' %}"> <!-- Ensure this path is correct -->
+    <script defer src="{% static 'javascript/home.js' %}"></script>
 </head>
 <body>
+    <div class="wave-container">
+        <div class="wave"></div>
+    </div>
+    <div class="particles"></div>
+
     <div class="container">
-        <h1>Hello, <span id="user-name">{{ user.username }}</span>!</h1>  <!-- Display logged-in user's name -->
+        <h1>Hello, <span id="user-name">{{ user.username }}</span>!</h1>
         <p class="intro-text">What would you like to work on today? Choose from the options below to start your learning journey.</p>
         <div class="options">
             <div class="option-box">
