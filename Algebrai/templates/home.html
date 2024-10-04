@@ -6,10 +6,10 @@
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <title>Algebra Learning Platform</title>
    <link rel="stylesheet" href="{% static 'css/home.css' %}">
-   <script src="{% static 'javascript/home.js' %}"></script>
+   <script defer src="{% static 'javascript/home.js' %}"></script>
+
 </head>
 <body>
-
 
    <div class="background">
        <!-- Floating Background Bubbles -->
@@ -19,15 +19,12 @@
        <div class="bubble" style="--size:5rem; --distance:10rem; --position:30%; --time:12s; --delay:-3s;"></div>
    </div>
 
-
    <header>
-        <h1>Hello, <span id="user-name">{{ user.username }}</span>!</h1>
-        <div class="scroll-indicator">↓ Scroll Down</div>
+       <h1>Welcome, <span id="username">{{ user.username }}</span>!</h1>  <!-- User's Name from Django -->
+       <div class="scroll-indicator">↓ Scroll Down</div>
    </header>
 
-
    <div class="container">
-
 
        <!-- Learning Algebra Section -->
        <section id="learning" class="swipe-section">
@@ -46,7 +43,6 @@
                <div class="slide">10. Exponential Functions</div>
            </div>
        </section>
-
 
        <!-- Practice Test Section -->
        <section id="practice-test" class="swipe-section">
@@ -67,7 +63,6 @@
                    <option value="exponential_functions">Exponential Functions</option>
                </select>
 
-
                <!-- Difficulty Level -->
                <label for="difficulty">Select difficulty level:</label>
                <select id="difficulty" name="difficulty">
@@ -76,20 +71,16 @@
                    <option value="hard">Hard</option>
                </select>
 
-
                <!-- Additional Questions -->
                <label for="additional-questions">Enter the number of additional questions:</label>
                <input type="text" id="additional-questions" name="additional-questions" placeholder="e.g. 5">
-
 
                <!-- Submit Button -->
                <button type="submit">Generate Test</button>
            </form>
        </section>
 
-
    </div>
-
 
 </body>
 </html>
