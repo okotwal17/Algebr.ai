@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 
 from pathlib import Path
 import os
+from decouple import config
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -116,3 +117,5 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # Login redirect URLs
 LOGIN_REDIRECT_URL = '/home/'  # Redirect to this URL after successful login
 LOGOUT_REDIRECT_URL = '/accounts/login/'  # Redirect to this URL after logout
+
+OPENAI_API_KEY = config('OPENAI_API_KEY')
