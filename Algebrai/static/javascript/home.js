@@ -47,3 +47,14 @@ function previousSection() {
 function scrollToSection(index) {
     swipeSections[index].scrollIntoView({ behavior: 'smooth' });
 }
+
+// Add click event listeners to each slide
+const slides = document.querySelectorAll('.slide');
+
+slides.forEach(slide => {
+    slide.addEventListener('click', () => {
+        const topic = slide.getAttribute('data-topic');
+        // Redirect to the lesson page with the topic as a query parameter
+        window.location.href = `lesson.html?topic=${topic}`;
+    });
+});

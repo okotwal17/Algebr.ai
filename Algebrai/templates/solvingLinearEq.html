@@ -1,0 +1,86 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Solving Linear Equations</title>
+   <link rel="stylesheet" href="{% static 'css/home.css' %}">
+</head>
+<body>
+
+   <div class="background">
+       <!-- Floating Background Bubbles -->
+       <div class="bubble" style="--size:6rem; --distance:6rem; --position:20%; --time:15s; --delay:-2s;"></div>
+       <div class="bubble" style="--size:4rem; --distance:8rem; --position:60%; --time:20s; --delay:-5s;"></div>
+       <div class="bubble" style="--size:3rem; --distance:6rem; --position:80%; --time:25s; --delay:-7s;"></div>
+       <div class="bubble" style="--size:5rem; --distance:10rem; --position:30%; --time:12s; --delay:-3s;"></div>
+   </div>
+
+   <header>
+       <h1>Solving Linear Equations</h1>
+       <div class="scroll-indicator">↓ Scroll Down</div>
+   </header>
+
+   <div class="container">
+       <!-- Introduction Section -->
+       <section class="swipe-section">
+           <h2>What is a Linear Equation?</h2>
+           <p>A linear equation is an equation where the highest exponent of the variable (usually x) is 1. It represents a straight line when plotted on a graph.</p>
+       </section>
+
+       <!-- Basic Example Section -->
+       <section class="swipe-section">
+           <h2>Basic Example</h2>
+           <p>Let's start with a basic linear equation:</p>
+           <pre>
+               2x + 3 = 11
+           </pre>
+           <p>To solve this equation, we need to isolate the variable x. Follow these steps:</p>
+           <ol>
+               <li>Subtract 3 from both sides: 2x = 8</li>
+               <li>Divide both sides by 2: x = 4</li>
+           </ol>
+           <p>So, the solution is x = 4.</p>
+       </section>
+
+       <!-- Step-by-Step Process Section -->
+       <section class="swipe-section">
+           <h2>Step-by-Step Process</h2>
+           <p>To solve any linear equation, follow these steps:</p>
+           <ul>
+               <li><strong>Step 1:</strong> Simplify both sides of the equation, if needed.</li>
+               <li><strong>Step 2:</strong> Use addition or subtraction to move constants to one side of the equation.</li>
+               <li><strong>Step 3:</strong> Use multiplication or division to solve for the variable.</li>
+           </ul>
+       </section>
+
+       <!-- Practice Problems Section -->
+       <section class="swipe-section">
+           <h2>Practice Problems</h2>
+           <p>Try solving these problems on your own:</p>
+           <ol>
+               <li>5x - 7 = 13</li>
+               <li>3x + 12 = 0</li>
+               <li>7 - 4x = 15</li>
+           </ol>
+           <p>Once you're done, check your answers below:</p>
+           <details>
+               <summary>Click to reveal answers</summary>
+               <ol>
+                   <li>x = 4</li>
+                   <li>x = -4</li>
+                   <li>x = -2</li>
+               </ol>
+           </details>
+       </section>
+
+       <!-- Back to Home Button -->
+       <div class="back-button">
+           <a href="{% url 'home' %}" class="btn">Back to Home</a>
+       </div>
+
+   </div>
+
+</body>
+</html>

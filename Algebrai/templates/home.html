@@ -7,8 +7,8 @@
    <title>Algebra Learning Platform</title>
    <link rel="stylesheet" href="{% static 'css/home.css' %}">
    <script defer src="{% static 'javascript/home.js' %}"></script>
-
 </head>
+
 <body>
 
    <div class="background">
@@ -28,19 +28,21 @@
 
        <!-- Learning Algebra Section -->
        <section id="learning" class="swipe-section">
-           <h2>Learning Algebra with AI</h2>
+           <h2>Learning Algebra</h2>
            <p>Swipe through the key algebra topics below. Click on any topic to start learning!</p>
            <div class="topic-slider">
-               <div class="slide">1. Solving Linear Equations</div>
-               <div class="slide">2. Quadratic Equations</div>
-               <div class="slide">3. Factoring Expressions</div>
-               <div class="slide">4. Simplifying Algebraic Expressions</div>
-               <div class="slide">5. Graphing Linear Equations</div>
-               <div class="slide">6. Systems of Equations</div>
-               <div class="slide">7. Polynomials</div>
-               <div class="slide">8. Rational Expressions</div>
-               <div class="slide">9. Inequalities</div>
-               <div class="slide">10. Exponential Functions</div>
+               <!-- Topic 1: Solving Linear Equations -->
+               <a href="{% url 'solvingLinearEq' %}" class="slide">1. Solving Linear Equations</a>
+               <!-- Additional topics (you can add more views and URLs for other pages) -->
+               <a href="{% url 'quadraticEquations' %}" class="slide">2. Quadratic Equations</a>
+               <a href="#" class="slide">3. Factoring Expressions</a>
+               <a href="#" class="slide">4. Simplifying Algebraic Expressions</a>
+               <a href="#" class="slide">5. Graphing Linear Equations</a>
+               <a href="#" class="slide">6. Systems of Equations</a>
+               <a href="#" class="slide">7. Polynomials</a>
+               <a href="#" class="slide">8. Rational Expressions</a>
+               <a href="#" class="slide">9. Inequalities</a>
+               <a href="#" class="slide">10. Exponential Functions</a>
            </div>
        </section>
 
