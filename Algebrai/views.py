@@ -43,4 +43,14 @@ class QuadraticEquationsView(TemplateView):
         context = self.get_context_data(**kwargs)
         return HttpResponse(template.render(context, request))
 
-# You can continue adding more views for other topics as needed
+class FactoringExpressionsView(TemplateView):
+    template_name = 'factoringExpressions.html'  # Specify the template for factoring expressions
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        return context
+
+    def get(self, request, *args, **kwargs):
+        template = loader.get_template(self.template_name)
+        context = self.get_context_data(**kwargs)
+        return HttpResponse(template.render(context, request))

@@ -1,0 +1,89 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simplifying Algebraic Expressions</title>
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
+    <script src="{% static 'js/home.js' %}" defer></script> <!-- Add the JS file here -->
+</head>
+<body>
+
+    <div class="background">
+        <!-- Floating Background Bubbles -->
+        <div class="bubble" style="--size:6rem; --distance:6rem; --position:20%; --time:15s; --delay:-2s;"></div>
+        <div class="bubble" style="--size:4rem; --distance:8rem; --position:60%; --time:20s; --delay:-5s;"></div>
+        <div class="bubble" style="--size:3rem; --distance:6rem; --position:80%; --time:25s; --delay:-7s;"></div>
+        <div class="bubble" style="--size:5rem; --distance:10rem; --position:30%; --time:12s; --delay:-3s;"></div>
+    </div>
+
+    <header>
+        <h1>Simplifying Algebraic Expressions</h1>
+        <div class="back-link">
+            <a href="{% url 'home' %}">Back to Home</a>
+        </div>
+    </header>
+
+    <div class="container">
+        <!-- Introduction Section -->
+        <section class="swipe-section">
+            <h2>What is Simplifying an Algebraic Expression?</h2>
+            <p>Simplifying algebraic expressions involves combining like terms, using the distributive property, and reducing expressions to their simplest form.</p>
+        </section>
+
+        <!-- Combining Like Terms Section -->
+        <section class="swipe-section">
+            <h2>Combining Like Terms</h2>
+            <p>Like terms are terms that have the same variable raised to the same power. You can combine them by adding or subtracting their coefficients.</p>
+            <p><strong>Example:</strong></p>
+            <pre>3x + 5x = 8x</pre>
+            <p>Here, both terms are like terms because they both contain the variable <code>x</code>.</p>
+        </section>
+
+        <!-- Using the Distributive Property Section -->
+        <section class="swipe-section">
+            <h2>Using the Distributive Property</h2>
+            <p>The distributive property allows you to multiply a single term by each term inside parentheses.</p>
+            <p><strong>Distributive Property Formula:</strong></p>
+            <pre>a(b + c) = ab + ac</pre>
+            <p><strong>Example:</strong></p>
+            <pre>2(x + 3) = 2x + 6</pre>
+        </section>
+
+        <!-- Simplifying Expressions Section -->
+        <section class="swipe-section">
+            <h2>Steps to Simplify an Expression</h2>
+            <p>To simplify any algebraic expression, follow these steps:</p>
+            <ul>
+                <li><strong>Step 1:</strong> Apply the distributive property, if necessary.</li>
+                <li><strong>Step 2:</strong> Combine like terms by adding or subtracting their coefficients.</li>
+            </ul>
+            <p><strong>Example:</strong></p>
+            <pre>3(2x + 4) - x = 6x + 12 - x = 5x + 12</pre>
+        </section>
+
+        <!-- Practice Problems Section -->
+        <section class="swipe-section">
+            <h2>Practice Problems</h2>
+            <p>Try simplifying these expressions:</p>
+            <ol>
+                <li>5x + 3x - 2</li>
+                <li>4(2x + 3) - 3x</li>
+                <li>3x + 2(2x - 5)</li>
+            </ol>
+            <p>Once you're done, check your answers below:</p>
+            <details>
+                <summary>Click to reveal answers</summary>
+                <ol>
+                    <li>8x - 2</li>
+                    <li>8x + 12 - 3x = 5x + 12</li>
+                    <li>3x + 4x - 10 = 7x - 10</li>
+                </ol>
+            </details>
+        </section>
+
+    </div>
+
+</body>
+</html>

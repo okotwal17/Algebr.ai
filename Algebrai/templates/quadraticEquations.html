@@ -1,0 +1,108 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Solving Quadratic Equations</title>
+   <link rel="stylesheet" href="{% static 'css/home.css' %}">
+   <script defer src="{% static 'javascript/home.js' %}"></script>
+
+</head>
+<body>
+
+   <div class="background">
+       <!-- Floating Background Bubbles -->
+       <div class="bubble" style="--size:6rem; --distance:6rem; --position:20%; --time:15s; --delay:-2s;"></div>
+       <div class="bubble" style="--size:4rem; --distance:8rem; --position:60%; --time:20s; --delay:-5s;"></div>
+       <div class="bubble" style="--size:3rem; --distance:6rem; --position:80%; --time:25s; --delay:-7s;"></div>
+       <div class="bubble" style="--size:5rem; --distance:10rem; --position:30%; --time:12s; --delay:-3s;"></div>
+   </div>
+
+   <header>
+       <h1>Solving Quadratic Equations</h1>
+       <div class="back-link">
+        <a href="{% url 'home' %}">Back to Home</a>
+    </div>
+   </header>
+
+   <div class="container">
+       <!-- Introduction Section -->
+       <section class="swipe-section">
+           <h2>What is a Quadratic Equation?</h2>
+           <p>A quadratic equation is an equation where the highest exponent of the variable (usually x) is 2. It represents a parabola when plotted on a graph.</p>
+       </section>
+
+       <!-- Basic Example Section -->
+       <section class="swipe-section">
+           <h2>Basic Example</h2>
+           <p>Let's start with a basic quadratic equation:</p>
+           <pre>
+               x² - 5x + 6 = 0
+           </pre>
+           <p>To solve this equation, we can factor it:</p>
+           <ol>
+               <li>Find two numbers that multiply to 6 and add to -5: (-2) and (-3)</li>
+               <li>Rewrite the equation as: (x - 2)(x - 3) = 0</li>
+               <li>Set each factor to 0 and solve for x: x - 2 = 0 or x - 3 = 0</li>
+               <li>Solve for x: x = 2 or x = 3</li>
+           </ol>
+           <p>So, the solutions are x = 2 and x = 3.</p>
+       </section>
+
+       <!-- Step-by-Step Process Section -->
+       <section class="swipe-section">
+           <h2>Step-by-Step Process</h2>
+           <p>To solve any quadratic equation, follow these methods:</p>
+           <ul>
+               <li><strong>Factoring:</strong> Factor the equation and solve for the values of x.</li>
+               <li><strong>Quadratic Formula:</strong> Use the formula <code>x = [-b ± √(b² - 4ac)] / 2a</code>.</li>
+               <li><strong>Completing the Square:</strong> Rewrite the equation as a perfect square trinomial, then solve for x.</li>
+           </ul>
+       </section>
+
+       <!-- Quadratic Formula Section -->
+       <section class="swipe-section">
+           <h2>Using the Quadratic Formula</h2>
+           <p>If factoring is difficult or impossible, use the quadratic formula:</p>
+           <pre>
+               x = [-b ± √(b² - 4ac)] / 2a
+           </pre>
+           <p>Here’s an example:</p>
+           <pre>
+               2x² - 4x - 6 = 0
+           </pre>
+           <p>Substitute the values into the formula:</p>
+           <ul>
+               <li>a = 2, b = -4, c = -6</li>
+               <li>Discriminant: b² - 4ac = (-4)² - 4(2)(-6) = 16 + 48 = 64</li>
+               <li>Apply the quadratic formula: x = [4 ± √64] / 4</li>
+               <li>Simplify: x = (4 ± 8) / 4, giving x = 3 or x = -1</li>
+           </ul>
+           <p>So, the solutions are x = 3 and x = -1.</p>
+       </section>
+
+       <!-- Practice Problems Section -->
+       <section class="swipe-section">
+           <h2>Practice Problems</h2>
+           <p>Try solving these quadratic equations on your own:</p>
+           <ol>
+               <li>x² + 6x + 8 = 0</li>
+               <li>2x² - 3x - 5 = 0</li>
+               <li>4x² - 4x + 1 = 0</li>
+           </ol>
+           <p>Once you're done, check your answers below:</p>
+           <details>
+               <summary>Click to reveal answers</summary>
+               <ol>
+                   <li>x = -2 or x = -4</li>
+                   <li>x = 2 or x = -1.25</li>
+                   <li>x = 0.5 (Double Root)</li>
+               </ol>
+           </details>
+       </section>
+
+   </div>
+
+</body>
+</html>

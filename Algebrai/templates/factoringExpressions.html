@@ -1,0 +1,85 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Factoring Expressions</title>
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
+    <script defer src="{% static 'javascript/home.js' %}"></script>
+
+</head>
+<body>
+
+    <div class="background">
+        <!-- Floating Background Bubbles -->
+        <div class="bubble" style="--size:6rem; --distance:6rem; --position:20%; --time:15s; --delay:-2s;"></div>
+        <div class="bubble" style="--size:4rem; --distance:8rem; --position:60%; --time:20s; --delay:-5s;"></div>
+        <div class="bubble" style="--size:3rem; --distance:6rem; --position:80%; --time:25s; --delay:-7s;"></div>
+        <div class="bubble" style="--size:5rem; --distance:10rem; --position:30%; --time:12s; --delay:-3s;"></div>
+    </div>
+
+    <header>
+        <h1>Factoring Expressions</h1>
+        <div class="back-link">
+            <a href="{% url 'home' %}">Back to Home</a>
+        </div>
+    </header>
+
+    <div class="container">
+        <!-- Introduction Section -->
+        <section class="swipe-section">
+            <h2>What is Factoring?</h2>
+            <p>Factoring is the process of breaking down an expression into a product of simpler expressions, or factors. It’s an essential skill when solving quadratic equations or simplifying algebraic expressions.</p>
+        </section>
+
+        <!-- Greatest Common Factor Section -->
+        <section class="swipe-section">
+            <h2>Greatest Common Factor (GCF)</h2>
+            <p>Factoring out the Greatest Common Factor (GCF) is the first step in many factoring problems. The GCF is the largest expression that divides all terms in the polynomial.</p>
+            <p><strong>Example:</strong></p>
+            <pre>6x² + 12x = 6x(x + 2)</pre>
+        </section>
+
+        <!-- Factoring Trinomials Section -->
+        <section class="swipe-section">
+            <h2>Factoring Trinomials</h2>
+            <p>For trinomials of the form <code>ax² + bx + c</code>, factoring involves finding two numbers that multiply to give <code>ac</code> and add to give <code>b</code>.</p>
+            <p><strong>Example:</strong></p>
+            <pre>x² + 5x + 6 = (x + 2)(x + 3)</pre>
+            <p>Here, 2 and 3 multiply to 6 and add to 5.</p>
+        </section>
+
+        <!-- Difference of Squares Section -->
+        <section class="swipe-section">
+            <h2>Factoring the Difference of Squares</h2>
+            <p>A difference of squares is factored as:</p>
+            <pre>a² - b² = (a + b)(a - b)</pre>
+            <p><strong>Example:</strong></p>
+            <pre>x² - 16 = (x + 4)(x - 4)</pre>
+        </section>
+
+        <!-- Practice Problems Section -->
+        <section class="swipe-section">
+            <h2>Practice Problems</h2>
+            <p>Try factoring these expressions:</p>
+            <ol>
+                <li>x² + 7x + 12</li>
+                <li>2x² + 10x</li>
+                <li>x² - 9</li>
+            </ol>
+            <p>Once you're done, check your answers below:</p>
+            <details>
+                <summary>Click to reveal answers</summary>
+                <ol>
+                    <li>(x + 3)(x + 4)</li>
+                    <li>2x(x + 5)</li>
+                    <li>(x + 3)(x - 3)</li>
+                </ol>
+            </details>
+        </section>
+
+    </div>
+
+</body>
+</html>
