@@ -1,0 +1,102 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Graphing Linear Equations</title>
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
+    <script defer src="{% static 'javascript/home.js' %}"></script>
+</head>
+<body>
+
+    <div class="background">
+        <!-- Floating Background Bubbles -->
+        <div class="bubble" style="--size:6rem; --distance:6rem; --position:20%; --time:15s; --delay:-2s;"></div>
+        <div class="bubble" style="--size:4rem; --distance:8rem; --position:60%; --time:20s; --delay:-5s;"></div>
+        <div class="bubble" style="--size:3rem; --distance:6rem; --position:80%; --time:25s; --delay:-7s;"></div>
+        <div class="bubble" style="--size:5rem; --distance:10rem; --position:30%; --time:12s; --delay:-3s;"></div>
+    </div>
+
+    <header>
+        <h1>Graphing Linear Equations</h1>
+        <div class="back-link">
+            <a href="{% url 'home' %}">Back to Home</a>
+        </div>
+    </header>
+
+    <div class="container">
+        <!-- Introduction Section -->
+        <section class="swipe-section">
+            <h2>What is a Linear Equation?</h2>
+            <p>A linear equation is an algebraic equation in which the highest exponent of the variable is one. When graphed, these equations produce a straight line.</p>
+        </section>
+
+        <!-- Slope-Intercept Form Section -->
+        <section class="swipe-section">
+            <h2>Slope-Intercept Form</h2>
+            <p>The most common form of a linear equation is called the slope-intercept form, written as:</p>
+            <pre>y = mx + b</pre>
+            <p>Where:</p>
+            <ul>
+                <li><strong>m</strong> is the slope (the steepness of the line).</li>
+                <li><strong>b</strong> is the y-intercept (the point where the line crosses the y-axis).</li>
+            </ul>
+        </section>
+
+        <!-- Understanding Slope Section -->
+        <section class="swipe-section">
+            <h2>Understanding Slope</h2>
+            <p>The slope of a line measures its steepness. It is the ratio of the vertical change to the horizontal change between two points on the line. The formula for slope is:</p>
+            <pre>slope (m) = (y₂ - y₁) / (x₂ - x₁)</pre>
+            <p><strong>Example:</strong> If the slope is 2, for every 1 unit you move to the right, the line moves up 2 units.</p>
+        </section>
+
+        <!-- Plotting Linear Equations Section -->
+        <section class="swipe-section">
+            <h2>Plotting a Linear Equation</h2>
+            <p>To graph a linear equation, follow these steps:</p>
+            <ol>
+                <li>Find the y-intercept (<strong>b</strong>) and plot the point where the line crosses the y-axis.</li>
+                <li>Use the slope (<strong>m</strong>) to find another point. For example, if the slope is 2, from the y-intercept, move up 2 units and 1 unit to the right to find the next point.</li>
+                <li>Draw a straight line through the points.</li>
+            </ol>
+        </section>
+
+        <!-- Graphing Example Section -->
+        <section class="swipe-section">
+            <h2>Graphing Example</h2>
+            <p>Let's graph the equation:</p>
+            <pre>y = 2x + 3</pre>
+            <p>In this equation:</p>
+            <ul>
+                <li>The slope <strong>m</strong> is 2 (which means "rise 2, run 1").</li>
+                <li>The y-intercept <strong>b</strong> is 3 (so the line crosses the y-axis at y = 3).</li>
+            </ul>
+            <p>Start by plotting the point (0, 3). Then, from this point, move up 2 units and 1 unit to the right to find the next point (1, 5). Draw the line through these points.</p>
+        </section>
+
+        <!-- Practice Problems Section -->
+        <section class="swipe-section">
+            <h2>Practice Problems</h2>
+            <p>Try graphing the following equations:</p>
+            <ol>
+                <li>y = x - 2</li>
+                <li>y = -3x + 1</li>
+                <li>y = 0.5x - 4</li>
+            </ol>
+            <p>Once you're done, check your answers below:</p>
+            <details>
+                <summary>Click to reveal answers</summary>
+                <ol>
+                    <li>Slope = 1, y-intercept = -2. Line crosses y-axis at (0, -2).</li>
+                    <li>Slope = -3, y-intercept = 1. Line crosses y-axis at (0, 1).</li>
+                    <li>Slope = 0.5, y-intercept = -4. Line crosses y-axis at (0, -4).</li>
+                </ol>
+            </details>
+        </section>
+
+    </div>
+
+</body>
+</html>

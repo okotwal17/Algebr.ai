@@ -1,0 +1,100 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Understanding Polynomials</title>
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
+    <script defer src="{% static 'javascript/home.js' %}"></script>
+</head>
+<body>
+
+    <div class="background">
+        <!-- Floating Background Bubbles -->
+        <div class="bubble" style="--size:6rem; --distance:6rem; --position:20%; --time:15s; --delay:-2s;"></div>
+        <div class="bubble" style="--size:4rem; --distance:8rem; --position:60%; --time:20s; --delay:-5s;"></div>
+        <div class="bubble" style="--size:3rem; --distance:6rem; --position:80%; --time:25s; --delay:-7s;"></div>
+        <div class="bubble" style="--size:5rem; --distance:10rem; --position:30%; --time:12s; --delay:-3s;"></div>
+    </div>
+
+    <header>
+        <h1>Understanding Polynomials</h1>
+        <div class="back-link">
+            <a href="{% url 'home' %}">Back to Home</a>
+        </div>
+    </header>
+
+    <div class="container">
+        <!-- Introduction Section -->
+        <section class="swipe-section">
+            <h2>What is a Polynomial?</h2>
+            <p>A polynomial is an algebraic expression made up of terms that consist of variables and coefficients, combined using addition, subtraction, and multiplication. Each term in a polynomial has a degree, which is the exponent of the variable.</p>
+        </section>
+
+        <!-- Types of Polynomials Section -->
+        <section class="swipe-section">
+            <h2>Types of Polynomials</h2>
+            <p>Polynomials can be classified based on the number of terms and the degree of the polynomial:</p>
+            <ul>
+                <li><strong>Monomial</strong>: A polynomial with one term (e.g., 5x²).</li>
+                <li><strong>Binomial</strong>: A polynomial with two terms (e.g., 3x + 2).</li>
+                <li><strong>Trinomial</strong>: A polynomial with three terms (e.g., x² - 4x + 3).</li>
+                <li><strong>Degree</strong>: The highest power of the variable in the polynomial (e.g., x³ + 2x² - x + 4 is a degree 3 polynomial).</li>
+            </ul>
+        </section>
+
+        <!-- Adding and Subtracting Polynomials Section -->
+        <section class="swipe-section">
+            <h2>Adding and Subtracting Polynomials</h2>
+            <p>To add or subtract polynomials, combine like terms. Like terms have the same variables raised to the same powers.</p>
+            <p><strong>Example (Addition):</strong></p>
+            <pre>(2x² + 3x + 4) + (x² + 2x + 1) = 3x² + 5x + 5</pre>
+            <p><strong>Example (Subtraction):</strong></p>
+            <pre>(3x² + 2x - 1) - (x² - 4x + 2) = 2x² + 6x - 3</pre>
+        </section>
+
+        <!-- Multiplying Polynomials Section -->
+        <section class="swipe-section">
+            <h2>Multiplying Polynomials</h2>
+            <p>When multiplying polynomials, each term in one polynomial is multiplied by each term in the other polynomial. The distributive property is used to simplify the result.</p>
+            <p><strong>Example:</strong></p>
+            <pre>(x + 2)(x - 3) = x² - 3x + 2x - 6 = x² - x - 6</pre>
+        </section>
+
+        <!-- Special Products Section -->
+        <section class="swipe-section">
+            <h2>Special Products of Polynomials</h2>
+            <p>Some polynomials follow special product patterns that make multiplying easier:</p>
+            <ul>
+                <li><strong>Square of a Binomial:</strong></li>
+                <pre>(a + b)² = a² + 2ab + b²</pre>
+                <li><strong>Difference of Squares:</strong></li>
+                <pre>(a + b)(a - b) = a² - b²</pre>
+            </ul>
+        </section>
+
+        <!-- Practice Problems Section -->
+        <section class="swipe-section">
+            <h2>Practice Problems</h2>
+            <p>Try working on the following polynomial problems:</p>
+            <ol>
+                <li>(x² + 3x + 2) + (2x² - x + 1)</li>
+                <li>(2x - 5)(x + 4)</li>
+                <li>Expand: (x + 3)²</li>
+            </ol>
+            <p>Once you're done, check your answers below:</p>
+            <details>
+                <summary>Click to reveal answers</summary>
+                <ol>
+                    <li>3x² + 2x + 3</li>
+                    <li>2x² + 3x - 20</li>
+                    <li>x² + 6x + 9</li>
+                </ol>
+            </details>
+        </section>
+
+    </div>
+
+</body>
+</html>

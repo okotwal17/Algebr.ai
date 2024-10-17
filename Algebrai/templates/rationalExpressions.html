@@ -1,0 +1,93 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Understanding Rational Expressions</title>
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
+    <script defer src="{% static 'javascript/home.js' %}"></script>
+</head>
+<body>
+
+    <div class="background">
+        <!-- Floating Background Bubbles -->
+        <div class="bubble" style="--size:6rem; --distance:6rem; --position:20%; --time:15s; --delay:-2s;"></div>
+        <div class="bubble" style="--size:4rem; --distance:8rem; --position:60%; --time:20s; --delay:-5s;"></div>
+        <div class="bubble" style="--size:3rem; --distance:6rem; --position:80%; --time:25s; --delay:-7s;"></div>
+        <div class="bubble" style="--size:5rem; --distance:10rem; --position:30%; --time:12s; --delay:-3s;"></div>
+    </div>
+
+    <header>
+        <h1>Understanding Rational Expressions</h1>
+        <div class="back-link">
+            <a href="{% url 'home' %}">Back to Home</a>
+        </div>
+    </header>
+
+    <div class="container">
+        <!-- Introduction Section -->
+        <section class="swipe-section">
+            <h2>What is a Rational Expression?</h2>
+            <p>A rational expression is a fraction where both the numerator and the denominator are polynomials. The denominator cannot be zero, and understanding how to simplify and perform operations with these expressions is key in algebra.</p>
+        </section>
+
+        <!-- Simplifying Rational Expressions Section -->
+        <section class="swipe-section">
+            <h2>Simplifying Rational Expressions</h2>
+            <p>To simplify a rational expression, factor both the numerator and the denominator and cancel out any common factors.</p>
+            <p><strong>Example:</strong></p>
+            <pre>(x² - 9) / (x² - 4x + 3) = (x + 3)(x - 3) / (x - 1)(x - 3) = (x + 3) / (x - 1)</pre>
+        </section>
+
+        <!-- Multiplying and Dividing Rational Expressions Section -->
+        <section class="swipe-section">
+            <h2>Multiplying and Dividing Rational Expressions</h2>
+            <p>When multiplying rational expressions, multiply the numerators and multiply the denominators, then simplify.</p>
+            <p><strong>Example (Multiplication):</strong></p>
+            <pre>(x / 2) * (3 / x²) = 3 / 2x</pre>
+            <p>For division, multiply the first fraction by the reciprocal of the second fraction.</p>
+            <p><strong>Example (Division):</strong></p>
+            <pre>(x / 3) ÷ (2 / x²) = (x / 3) * (x² / 2) = x³ / 6</pre>
+        </section>
+
+        <!-- Adding and Subtracting Rational Expressions Section -->
+        <section class="swipe-section">
+            <h2>Adding and Subtracting Rational Expressions</h2>
+            <p>To add or subtract rational expressions, first find a common denominator, rewrite each expression with this denominator, then add or subtract the numerators.</p>
+            <p><strong>Example:</strong></p>
+            <pre>(1 / (x + 1)) + (2 / (x - 1)) = (x - 1 + 2(x + 1)) / ((x + 1)(x - 1)) = (x + 1) / ((x + 1)(x - 1)) = 1 / (x - 1)</pre>
+        </section>
+
+        <!-- Restrictions on the Domain Section -->
+        <section class="swipe-section">
+            <h2>Restrictions on the Domain</h2>
+            <p>When dealing with rational expressions, it’s important to state any restrictions on the domain, meaning values of the variable that would make the denominator zero.</p>
+            <p><strong>Example:</strong></p>
+            <p>For the expression <code>(x + 3) / (x - 2)</code>, the value <code>x = 2</code> is not allowed, because it makes the denominator zero.</p>
+        </section>
+
+        <!-- Practice Problems Section -->
+        <section class="swipe-section">
+            <h2>Practice Problems</h2>
+            <p>Simplify the following rational expressions:</p>
+            <ol>
+                <li>(x² - 16) / (x² - 4x)</li>
+                <li>(x + 2) / (x - 3) * (x - 3) / (x² + 5x + 6)</li>
+                <li>(1 / (x + 1)) - (1 / (x - 1))</li>
+            </ol>
+            <p>Once you're done, check your answers below:</p>
+            <details>
+                <summary>Click to reveal answers</summary>
+                <ol>
+                    <li>(x + 4) / x</li>
+                    <li>1 / (x + 2)</li>
+                    <li>2 / (x² - 1)</li>
+                </ol>
+            </details>
+        </section>
+
+    </div>
+
+</body>
+</html>

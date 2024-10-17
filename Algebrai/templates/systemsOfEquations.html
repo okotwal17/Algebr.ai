@@ -1,0 +1,122 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solving Systems of Equations</title>
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
+    <script defer src="{% static 'javascript/home.js' %}"></script>
+</head>
+<body>
+
+    <div class="background">
+        <!-- Floating Background Bubbles -->
+        <div class="bubble" style="--size:6rem; --distance:6rem; --position:20%; --time:15s; --delay:-2s;"></div>
+        <div class="bubble" style="--size:4rem; --distance:8rem; --position:60%; --time:20s; --delay:-5s;"></div>
+        <div class="bubble" style="--size:3rem; --distance:6rem; --position:80%; --time:25s; --delay:-7s;"></div>
+        <div class="bubble" style="--size:5rem; --distance:10rem; --position:30%; --time:12s; --delay:-3s;"></div>
+    </div>
+
+    <header>
+        <h1>Solving Systems of Equations</h1>
+        <div class="back-link">
+            <a href="{% url 'home' %}">Back to Home</a>
+        </div>
+    </header>
+
+    <div class="container">
+        <!-- Introduction Section -->
+        <section class="swipe-section">
+            <h2>What is a System of Equations?</h2>
+            <p>A system of equations is a set of two or more equations that have common variables. The goal is to find the values of these variables that satisfy all the equations simultaneously.</p>
+        </section>
+
+        <!-- Graphing Method Section -->
+        <section class="swipe-section">
+            <h2>Solving by Graphing</h2>
+            <p>The graphing method involves graphing both equations on the same coordinate plane. The solution is the point where the two lines intersect.</p>
+            <p><strong>Steps:</strong></p>
+            <ol>
+                <li>Graph both equations on the same coordinate plane.</li>
+                <li>Find the point where the lines intersect (if they do).</li>
+                <li>This point is the solution to the system of equations.</li>
+            </ol>
+            <p><strong>Example:</strong></p>
+            <pre>
+Equation 1: y = 2x + 3
+Equation 2: y = -x + 1
+Solution: (2, 7)
+            </pre>
+        </section>
+
+        <!-- Substitution Method Section -->
+        <section class="swipe-section">
+            <h2>Solving by Substitution</h2>
+            <p>In the substitution method, one equation is solved for one variable, and that expression is substituted into the other equation.</p>
+            <p><strong>Steps:</strong></p>
+            <ol>
+                <li>Solve one of the equations for one variable (e.g., solve for y).</li>
+                <li>Substitute that expression into the other equation and solve for the remaining variable.</li>
+                <li>Use the solution to find the value of the other variable.</li>
+            </ol>
+            <p><strong>Example:</strong></p>
+            <pre>
+Equation 1: y = 2x + 1
+Equation 2: x + y = 5
+
+Substitute y in Equation 2:
+x + (2x + 1) = 5
+3x + 1 = 5
+x = 4/3
+            </pre>
+        </section>
+
+        <!-- Elimination Method Section -->
+        <section class="swipe-section">
+            <h2>Solving by Elimination</h2>
+            <p>The elimination method involves adding or subtracting the equations to eliminate one variable, allowing you to solve for the remaining variable.</p>
+            <p><strong>Steps:</strong></p>
+            <ol>
+                <li>Multiply one or both equations to align the coefficients of one variable.</li>
+                <li>Add or subtract the equations to eliminate that variable.</li>
+                <li>Solve for the remaining variable.</li>
+                <li>Substitute back into one of the original equations to find the other variable.</li>
+            </ol>
+            <p><strong>Example:</strong></p>
+            <pre>
+Equation 1: 2x + y = 7
+Equation 2: -2x + 3y = 1
+
+Add the equations:
+4y = 8
+y = 2
+Now substitute y into Equation 1:
+2x + 2 = 7, so x = 2.5
+            </pre>
+        </section>
+
+        <!-- Practice Problems Section -->
+        <section class="swipe-section">
+            <h2>Practice Problems</h2>
+            <p>Try solving these systems of equations using your preferred method:</p>
+            <ol>
+                <li>y = 3x - 4 and y = x + 2</li>
+                <li>2x + 3y = 12 and x - y = 3</li>
+                <li>3x + 2y = 5 and 4x - y = 11</li>
+            </ol>
+            <p>Once you're done, check your answers below:</p>
+            <details>
+                <summary>Click to reveal answers</summary>
+                <ol>
+                    <li>(3, 5)</li>
+                    <li>(6, 2)</li>
+                    <li>(3, -2)</li>
+                </ol>
+            </details>
+        </section>
+
+    </div>
+
+</body>
+</html>

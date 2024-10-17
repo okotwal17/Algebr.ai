@@ -1,0 +1,113 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solving Inequalities</title>
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
+    <script defer src="{% static 'javascript/home.js' %}"></script>
+</head>
+<body>
+
+    <div class="background">
+        <!-- Floating Background Bubbles -->
+        <div class="bubble" style="--size:6rem; --distance:6rem; --position:20%; --time:15s; --delay:-2s;"></div>
+        <div class="bubble" style="--size:4rem; --distance:8rem; --position:60%; --time:20s; --delay:-5s;"></div>
+        <div class="bubble" style="--size:3rem; --distance:6rem; --position:80%; --time:25s; --delay:-7s;"></div>
+        <div class="bubble" style="--size:5rem; --distance:10rem; --position:30%; --time:12s; --delay:-3s;"></div>
+    </div>
+
+    <header>
+        <h1>Solving Inequalities</h1>
+        <div class="back-link">
+            <a href="{% url 'home' %}">Back to Home</a>
+        </div>
+    </header>
+
+    <div class="container">
+        <!-- Introduction Section -->
+        <section class="swipe-section">
+            <h2>What is an Inequality?</h2>
+            <p>An inequality is a mathematical statement that compares two expressions using inequality symbols. The most common symbols are:</p>
+            <ul>
+                <li><code>&lt;</code> (less than)</li>
+                <li><code>&gt;</code> (greater than)</li>
+                <li><code>&le;</code> (less than or equal to)</li>
+                <li><code>&ge;</code> (greater than or equal to)</li>
+            </ul>
+        </section>
+
+        <!-- Solving Inequalities Section -->
+        <section class="swipe-section">
+            <h2>Solving Basic Inequalities</h2>
+            <p>To solve inequalities, you follow the same steps as solving equations. However, remember that when you multiply or divide both sides of an inequality by a negative number, you must flip the inequality symbol.</p>
+            <p><strong>Example:</strong></p>
+            <pre>2x - 3 &gt; 5</pre>
+            <p>Solution:</p>
+            <pre>2x &gt; 8</pre>
+            <pre>x &gt; 4</pre>
+            <p><strong>Important Rule:</strong> If you divide by a negative number, flip the inequality.</p>
+        </section>
+
+        <!-- Graphing Inequalities Section -->
+        <section class="swipe-section">
+            <h2>Graphing Inequalities on a Number Line</h2>
+            <p>Once you have solved the inequality, you can graph it on a number line. Use an open circle for <code>&lt;</code> and <code>&gt;</code>, and a closed circle for <code>&le;</code> and <code>&ge;</code>. Shade to the left or right to indicate all possible solutions.</p>
+            <p><strong>Example:</strong></p>
+            <pre>x &lt; 4</pre>
+            <p>Graph:</p>
+            <ul>
+                <li>An open circle at 4</li>
+                <li>Shade to the left (towards smaller numbers)</li>
+            </ul>
+        </section>
+
+        <!-- Compound Inequalities Section -->
+        <section class="swipe-section">
+            <h2>Compound Inequalities</h2>
+            <p>Compound inequalities involve two inequalities connected by the words "and" or "or". An "and" inequality means that both conditions must be true, while an "or" inequality means that at least one condition must be true.</p>
+            <p><strong>Example (and inequality):</strong></p>
+            <pre>1 &lt; x &lt; 5</pre>
+            <p>Solution: The variable <code>x</code> must be between 1 and 5.</p>
+            <p><strong>Example (or inequality):</strong></p>
+            <pre>x &lt; -2 or x &gt; 3</pre>
+            <p>Solution: The variable <code>x</code> can be less than -2 or greater than 3.</p>
+        </section>
+
+        <!-- Solving Absolute Value Inequalities Section -->
+        <section class="swipe-section">
+            <h2>Solving Absolute Value Inequalities</h2>
+            <p>An absolute value inequality involves finding the values of a variable that satisfy the inequality, taking into account that absolute value represents the distance from zero.</p>
+            <p><strong>Example:</strong></p>
+            <pre>|x - 2| &lt; 3</pre>
+            <p>Solution: This becomes two inequalities:</p>
+            <pre>-3 &lt; x - 2 &lt; 3</pre>
+            <p>Now solve for <code>x</code>:</p>
+            <pre>-1 &lt; x &lt; 5</pre>
+        </section>
+
+        <!-- Practice Problems Section -->
+        <section class="swipe-section">
+            <h2>Practice Problems</h2>
+            <p>Solve and graph the following inequalities:</p>
+            <ol>
+                <li>3x + 4 &lt; 10</li>
+                <li>-2x + 1 &ge; 5</li>
+                <li>|x + 3| &lt; 4</li>
+            </ol>
+            <p>Once you're done, check your answers below:</p>
+            <details>
+                <summary>Click to reveal answers</summary>
+                <ol>
+                    <li>x &lt; 2</li>
+                    <li>x &le; -2</li>
+                    <li>-7 &lt; x &lt; 1</li>
+                </ol>
+            </details>
+        </section>
+
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,113 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exponential Functions</title>
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
+    <script defer src="{% static 'javascript/home.js' %}"></script>
+</head>
+<body>
+
+    <div class="background">
+        <!-- Floating Background Bubbles -->
+        <div class="bubble" style="--size:6rem; --distance:6rem; --position:20%; --time:15s; --delay:-2s;"></div>
+        <div class="bubble" style="--size:4rem; --distance:8rem; --position:60%; --time:20s; --delay:-5s;"></div>
+        <div class="bubble" style="--size:3rem; --distance:6rem; --position:80%; --time:25s; --delay:-7s;"></div>
+        <div class="bubble" style="--size:5rem; --distance:10rem; --position:30%; --time:12s; --delay:-3s;"></div>
+    </div>
+
+    <header>
+        <h1>Exponential Functions</h1>
+        <div class="back-link">
+            <a href="{% url 'home' %}">Back to Home</a>
+        </div>
+    </header>
+
+    <div class="container">
+        <!-- Introduction Section -->
+        <section class="swipe-section">
+            <h2>What is an Exponential Function?</h2>
+            <p>An exponential function is a function where the variable is in the exponent. The general form is:</p>
+            <pre>f(x) = a * b^x</pre>
+            <p>where <code>a</code> is a constant, <code>b</code> is the base (a positive number), and <code>x</code> is the exponent (the variable).</p>
+        </section>
+
+        <!-- Growth vs. Decay Section -->
+        <section class="swipe-section">
+            <h2>Exponential Growth vs. Exponential Decay</h2>
+            <p>Exponential functions can represent growth or decay, depending on the base <code>b</code>:</p>
+            <ul>
+                <li><strong>Exponential Growth:</strong> If <code>b &gt; 1</code>, the function represents growth, and the graph rises rapidly as <code>x</code> increases.</li>
+                <li><strong>Exponential Decay:</strong> If <code>0 &lt; b &lt; 1</code>, the function represents decay, and the graph falls rapidly as <code>x</code> increases.</li>
+            </ul>
+            <p><strong>Example (Growth):</strong></p>
+            <pre>f(x) = 2 * (1.5)^x</pre>
+            <p><strong>Example (Decay):</strong></p>
+            <pre>f(x) = 3 * (0.5)^x</pre>
+        </section>
+
+        <!-- Key Properties of Exponential Functions Section -->
+        <section class="swipe-section">
+            <h2>Key Properties of Exponential Functions</h2>
+            <p>Exponential functions have several important properties:</p>
+            <ul>
+                <li><strong>Y-intercept:</strong> The y-intercept occurs at <code>(0, a)</code>.</li>
+                <li><strong>Asymptote:</strong> The graph approaches the x-axis (y = 0) but never crosses it.</li>
+                <li><strong>Domain:</strong> The domain is all real numbers.</li>
+                <li><strong>Range:</strong> The range is <code>y &gt; 0</code> for growth and decay functions where <code>a &gt; 0</code>.</li>
+            </ul>
+        </section>
+
+        <!-- Graphing Exponential Functions Section -->
+        <section class="swipe-section">
+            <h2>Graphing Exponential Functions</h2>
+            <p>To graph an exponential function, plot several points by choosing values of <code>x</code> and finding the corresponding values of <code>f(x)</code>. Key points to plot include the y-intercept at <code>(0, a)</code> and points around <code>x = 0</code> to observe growth or decay.</p>
+            <p><strong>Example:</strong> Graph the function <code>f(x) = 2 * 3^x</code></p>
+            <ul>
+                <li><code>f(0) = 2 * 3^0 = 2</code> (y-intercept)</li>
+                <li><code>f(1) = 2 * 3^1 = 6</code></li>
+                <li><code>f(-1) = 2 * 3^-1 = 2/3</code></li>
+            </ul>
+        </section>
+
+        <!-- Solving Exponential Equations Section -->
+        <section class="swipe-section">
+            <h2>Solving Exponential Equations</h2>
+            <p>To solve exponential equations, you often use logarithms to "bring down" the exponent and solve for <code>x</code>. If the equation has the same base on both sides, you can set the exponents equal to each other.</p>
+            <p><strong>Example 1:</strong></p>
+            <pre>2^x = 8</pre>
+            <p>Since 8 is the same as <code>2^3</code>, we can set the exponents equal:</p>
+            <pre>x = 3</pre>
+            <p><strong>Example 2:</strong></p>
+            <pre>3^(2x) = 81</pre>
+            <p>81 is the same as <code>3^4</code>, so:</p>
+            <pre>2x = 4</pre>
+            <pre>x = 2</pre>
+        </section>
+
+        <!-- Practice Problems Section -->
+        <section class="swipe-section">
+            <h2>Practice Problems</h2>
+            <p>Try these problems to test your understanding:</p>
+            <ol>
+                <li>Graph the function <code>f(x) = 3 * 2^x</code>.</li>
+                <li>Solve for <code>x</code>: <code>4^(x-1) = 64</code></li>
+                <li>Determine whether the function represents growth or decay: <code>f(x) = 5 * (0.8)^x</code></li>
+            </ol>
+            <p>Once you're done, check your answers below:</p>
+            <details>
+                <summary>Click to reveal answers</summary>
+                <ol>
+                    <li>Graph rises rapidly as <code>x</code> increases.</li>
+                    <li><code>x = 4</code></li>
+                    <li>Decay, since <code>0.8 &lt; 1</code>.</li>
+                </ol>
+            </details>
+        </section>
+
+    </div>
+
+</body>
+</html>

@@ -54,3 +54,15 @@ class FactoringExpressionsView(TemplateView):
         template = loader.get_template(self.template_name)
         context = self.get_context_data(**kwargs)
         return HttpResponse(template.render(context, request))
+
+class SimplAlgExpView(TemplateView):
+    template_name = 'simplifyingAlgebraExp.html'  # Specify the template for factoring expressions
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        return context
+
+    def get(self, request, *args, **kwargs):
+        template = loader.get_template(self.template_name)
+        context = self.get_context_data(**kwargs)
+        return HttpResponse(template.render(context, request))
