@@ -66,3 +66,78 @@ class SimplAlgExpView(TemplateView):
         template = loader.get_template(self.template_name)
         context = self.get_context_data(**kwargs)
         return HttpResponse(template.render(context, request))
+
+class GraphLinearEqView(TemplateView):
+    template_name = 'graphingLinearEquations.html'  # Specify the template for factoring expressions
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        return context
+
+    def get(self, request, *args, **kwargs):
+        template = loader.get_template(self.template_name)
+        context = self.get_context_data(**kwargs)
+        return HttpResponse(template.render(context, request))
+
+
+class SystemsOfEquationsView(TemplateView):
+    template_name = 'systemsOfEquations.html'  # Specify the template for factoring expressions
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        return context
+
+    def get(self, request, *args, **kwargs):
+        template = loader.get_template(self.template_name)
+        context = self.get_context_data(**kwargs)
+        return HttpResponse(template.render(context, request))
+    
+class PolynomialsView(TemplateView):
+    template_name = 'polynomials.html'  # Specify the template for factoring expressions
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        return context
+
+    def get(self, request, *args, **kwargs):
+        template = loader.get_template(self.template_name)
+        context = self.get_context_data(**kwargs)
+        return HttpResponse(template.render(context, request))
+    
+
+class RationalExpressionsView(TemplateView):
+    template_name = 'rationalExpressions.html'  # Specify the template for factoring expressions
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        return context
+
+    def get(self, request, *args, **kwargs):
+        template = loader.get_template(self.template_name)
+        context = self.get_context_data(**kwargs)
+        return HttpResponse(template.render(context, request))
+    
+
+class InequalitiesView(TemplateView):
+    template_name = 'inequalities.html'  # Specify the template for factoring expressions
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        return context
+
+    def get(self, request, *args, **kwargs):
+        template = loader.get_template(self.template_name)
+        context = self.get_context_data(**kwargs)
+        return HttpResponse(template.render(context, request))
+
+class ExponentialFunctionsView(TemplateView):
+    template_name = 'exponentialFunctions.html'  # Specify the template for factoring expressions
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        return context
+
+    def get(self, request, *args, **kwargs):
+        template = loader.get_template(self.template_name)
+        context = self.get_context_data(**kwargs)
+        return HttpResponse(template.render(context, request))
