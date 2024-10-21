@@ -12,7 +12,6 @@ class HomeView(TemplateView):
         return context
 
     def get(self, request, *args, **kwargs):
-        # Check the template loading
         template = loader.get_template(self.template_name)
         context = self.get_context_data(**kwargs)  # Get context data
         return HttpResponse(template.render(context, request))  # Render the template with context
@@ -56,7 +55,7 @@ class FactoringExpressionsView(TemplateView):
         return HttpResponse(template.render(context, request))
 
 class SimplAlgExpView(TemplateView):
-    template_name = 'simplifyingAlgebraExp.html'  # Specify the template for factoring expressions
+    template_name = 'simplifyingAlgebraExp.html'  # Specify the template for simplifying algebra expressions
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -68,7 +67,7 @@ class SimplAlgExpView(TemplateView):
         return HttpResponse(template.render(context, request))
 
 class GraphLinearEqView(TemplateView):
-    template_name = 'graphingLinearEquations.html'  # Specify the template for factoring expressions
+    template_name = 'graphingLinearEquations.html'  # Specify the template for graphing linear equations
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -81,7 +80,7 @@ class GraphLinearEqView(TemplateView):
 
 
 class SystemsOfEquationsView(TemplateView):
-    template_name = 'systemsOfEquations.html'  # Specify the template for factoring expressions
+    template_name = 'systemsOfEquations.html'  # Specify the template for systems of equations
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -93,7 +92,7 @@ class SystemsOfEquationsView(TemplateView):
         return HttpResponse(template.render(context, request))
     
 class PolynomialsView(TemplateView):
-    template_name = 'polynomials.html'  # Specify the template for factoring expressions
+    template_name = 'polynomials.html'  # Specify the template for polynomials
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -106,7 +105,7 @@ class PolynomialsView(TemplateView):
     
 
 class RationalExpressionsView(TemplateView):
-    template_name = 'rationalExpressions.html'  # Specify the template for factoring expressions
+    template_name = 'rationalExpressions.html'  # Specify the template for rational expressions
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -119,7 +118,7 @@ class RationalExpressionsView(TemplateView):
     
 
 class InequalitiesView(TemplateView):
-    template_name = 'inequalities.html'  # Specify the template for factoring expressions
+    template_name = 'inequalities.html'  # Specify the template for inequalities
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -131,7 +130,20 @@ class InequalitiesView(TemplateView):
         return HttpResponse(template.render(context, request))
 
 class ExponentialFunctionsView(TemplateView):
-    template_name = 'exponentialFunctions.html'  # Specify the template for factoring expressions
+    template_name = 'exponentialFunctions.html'  # Specify the template for exponential functions
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        return context
+
+    def get(self, request, *args, **kwargs):
+        template = loader.get_template(self.template_name)
+        context = self.get_context_data(**kwargs)
+        return HttpResponse(template.render(context, request))
+
+# View for the Practice Test page
+class PracticeTestView(TemplateView):
+    template_name = 'practiceTest.html'  # Specify the template for the practice test
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)

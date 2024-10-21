@@ -31,9 +31,8 @@
            <h2>Learning Algebra</h2>
            <p>Swipe through the key algebra topics below. Click on any topic to start learning!</p>
            <div class="topic-slider">
-               <!-- Topic 1: Solving Linear Equations -->
+               <!-- Topic Links -->
                <a href="{% url 'solvingLinearEq' %}" class="slide">1. Solving Linear Equations</a>
-               <!-- Additional topics (you can add more views and URLs for other pages) -->
                <a href="{% url 'quadraticEquations' %}" class="slide">2. Quadratic Equations</a>
                <a href="{% url 'factoringExpressions' %}" class="slide">3. Factoring Expressions</a>
                <a href="{% url 'simplifyingAlgebraExp' %}" class="slide">4. Simplifying Algebraic Expressions</a>
@@ -49,10 +48,10 @@
        <!-- Practice Test Section -->
        <section id="practice-test" class="swipe-section">
            <h2>Generate Your Practice Test</h2>
-           <form>
+           <form action="{% url 'practiceTest' %}" method="GET">  <!-- Updated action to practiceTest URL -->
                <!-- Topic Selection -->
                <label for="topic">Choose an algebra topic:</label>
-               <select id="topic" name="topic">
+               <select id="topic" name="topic" required>
                    <option value="linear_equations">Solving Linear Equations</option>
                    <option value="quadratic_equations">Quadratic Equations</option>
                    <option value="factoring">Factoring Expressions</option>
@@ -65,17 +64,9 @@
                    <option value="exponential_functions">Exponential Functions</option>
                </select>
 
-               <!-- Difficulty Level -->
-               <label for="difficulty">Select difficulty level:</label>
-               <select id="difficulty" name="difficulty">
-                   <option value="easy">Easy</option>
-                   <option value="medium">Medium</option>
-                   <option value="hard">Hard</option>
-               </select>
-
                <!-- Additional Questions -->
                <label for="additional-questions">Enter the number of additional questions:</label>
-               <input type="text" id="additional-questions" name="additional-questions" placeholder="e.g. 5">
+               <input type="number" id="additional-questions" name="additional-questions" placeholder="e.g. 5" min="1" required>
 
                <!-- Submit Button -->
                <button type="submit">Generate Test</button>
