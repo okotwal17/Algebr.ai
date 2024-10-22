@@ -13,7 +13,8 @@ from Algebrai.views import (
     RationalExpressionsView,
     InequalitiesView,
     ExponentialFunctionsView,
-    PracticeTestView,  # Import the new practice test view
+    PracticeTestView, 
+    ResultsView  # Import the new practice test view
 )
 
 urlpatterns = [
@@ -34,4 +35,6 @@ urlpatterns = [
     path('inequalities/', InequalitiesView.as_view(), name='inequalities'),  # Corrected name
     path('exponential-functions/', ExponentialFunctionsView.as_view(), name='exponentialFunctions'),  # Corrected name
     path('practice-test/', PracticeTestView.as_view(), name='practiceTest'),  # Practice Test page
+    path('results-page/', ResultsView.as_view(), name='results'),  # Practice Test page
+
 ]
