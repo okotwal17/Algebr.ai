@@ -167,44 +167,54 @@ class PracticeTestView(TemplateView):
         question_difficulty = request.POST.get('question_difficulty', 'easy')
         correct_answer = request.POST.get('correct_answer', '')
         correct_count = int(request.POST.get('correct_count', 0))
-
-        # Debugging output to verify answers
-        print(f"User Answer: '{user_answer}', Correct Answer: '{correct_answer}'")
-
-        # Check if answer is correct, ensuring consistent formatting
-        is_correct = user_answer.strip().lower() == correct_answer.strip().lower()
-        
-        if is_correct:
-            correct_count += 1
-            difficulty = 'medium' if question_difficulty == 'easy' else 'hard' if question_difficulty == 'medium' else 'hard'
-        else:
-            difficulty = 'easy' if question_difficulty == 'easy' else 'easy' if question_difficulty == 'medium' else 'hard'
-
-        # Generate next question
-        next_question = self.generate_ai_question(difficulty)
-        next_correct_answer = self.get_ai_answer(next_question)
-
-        # Update question number and check if test is over
         total_questions = int(request.POST.get('total_questions', 10))
-        question_number += 1
 
-        if question_number > total_questions:
-            return render(request, 'results.html', {'correct_count': correct_count, 'total_questions': total_questions})
+        # Check if answer is correct
+        is_correct = user_answer.strip().lower() == correct_answer.strip().lower()
 
-        return render(request, 'practiceTest.html', {
-            'question_text': next_question,
+        # Prepare data for rendering
+        context = {
+            'question_text': request.POST.get('question_text', ''),
+            'user_answer': user_answer,
+            'correct_answer': correct_answer,
+            'is_correct': is_correct,
             'question_number': question_number,
-            'correct_answer': next_correct_answer,
             'correct_count': correct_count,
             'total_questions': total_questions,
-            'difficulty': difficulty,
-            'is_correct': is_correct
-        })
+            'difficulty': question_difficulty
+        }
 
+        # Handle self-grading (After showing answer)
+        if 'grade' in request.POST:
+            if request.POST['grade'] == 'correct':
+                context['correct_count'] += 1
 
+            # Update question number and difficulty
+            question_number += 1
+            difficulty = 'easy' if question_difficulty == 'easy' else 'medium' if question_difficulty == 'medium' else 'hard'
+
+            # If test completed, show results
+            if question_number > total_questions:
+                return render(request, 'results.html', {'correct_count': context['correct_count'], 'total_questions': total_questions})
+
+            # Generate next question
+            next_question = self.generate_ai_question(difficulty)
+            next_correct_answer = self.get_ai_answer(next_question)
+
+            # Update context for the next question
+            context.update({
+                'question_text': next_question,
+                'correct_answer': next_correct_answer,
+                'question_number': question_number,
+                'difficulty': difficulty,
+                'is_correct': None,  # Reset for the next question
+                'user_answer': ''
+            })
+
+        return render(request, 'practiceTest.html', context)
 
     def get(self, request, *args, **kwargs):
-        total_questions = 10  # Set this dynamically if needed
+        total_questions = 10  # Set total questions dynamically if needed
         question_difficulty = 'easy'  # Start with easy questions
         question_text = self.generate_ai_question(question_difficulty)
         correct_answer = self.get_ai_answer(question_text)
@@ -215,9 +225,10 @@ class PracticeTestView(TemplateView):
             'correct_answer': correct_answer,
             'correct_count': 0,
             'total_questions': total_questions,
-            'difficulty': question_difficulty
+            'difficulty': question_difficulty,
+            'is_correct': None,
+            'user_answer': ''
         })
-
 
 class ResultsView(TemplateView):
     template_name = 'results.html'  # Specify the template for the practice test
