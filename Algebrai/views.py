@@ -186,30 +186,36 @@ class PracticeTestView(TemplateView):
 
         # Handle self-grading (After showing answer)
         if 'grade' in request.POST:
+            # Update correct count based on self-grading
             if request.POST['grade'] == 'correct':
                 context['correct_count'] += 1
+            context['is_correct'] = None  # Reset correctness for new question
 
-            # Update question number and difficulty
-            question_number += 1
-            difficulty = 'easy' if question_difficulty == 'easy' else 'medium' if question_difficulty == 'medium' else 'hard'
+        else:
+            # Update correct count if the answer was correct
+            if is_correct:
+                context['correct_count'] += 1
 
-            # If test completed, show results
-            if question_number > total_questions:
-                return render(request, 'results.html', {'correct_count': context['correct_count'], 'total_questions': total_questions})
+        # Check if the test is completed
+        if question_number >= total_questions:
+            return render(request, 'results.html', {'correct_count': context['correct_count'], 'total_questions': total_questions})
 
-            # Generate next question
-            next_question = self.generate_ai_question(difficulty)
-            next_correct_answer = self.get_ai_answer(next_question)
-
-            # Update context for the next question
-            context.update({
-                'question_text': next_question,
-                'correct_answer': next_correct_answer,
-                'question_number': question_number,
-                'difficulty': difficulty,
-                'is_correct': None,  # Reset for the next question
-                'user_answer': ''
-            })
+        # Prepare for next question if continuing
+        question_number += 1
+        question_difficulty = 'easy' if question_difficulty == 'easy' else 'medium' if question_difficulty == 'medium' else 'hard'
+        
+        # Generate next question and answer
+        next_question = self.generate_ai_question(question_difficulty)
+        next_correct_answer = self.get_ai_answer(next_question)
+        
+        # Update context for the next question
+        context.update({
+            'question_text': next_question,
+            'correct_answer': next_correct_answer,
+            'question_number': question_number,
+            'difficulty': question_difficulty,
+            'user_answer': ''
+        })
 
         return render(request, 'practiceTest.html', context)
 

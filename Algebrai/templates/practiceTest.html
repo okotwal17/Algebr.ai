@@ -19,38 +19,37 @@
             <p>{{ question_text }}</p>
             <form method="POST">
                 {% csrf_token %}
+                
+                <!-- User answer input -->
                 <input 
                     type="text" 
                     name="user_answer" 
                     placeholder="Your answer" 
-                    value="{{ user_answer }}"  <!-- Keep the user's answer after submission -->
-                    {% if is_correct is not None %} disabled {% endif %}>  <!-- Disable after submission -->
+                    value="{{ user_answer }}"  
+                    {% if is_correct is not None %} disabled {% endif %}>
 
+                <!-- Hidden fields to keep track of state -->
                 <input type="hidden" name="question_difficulty" value="{{ difficulty }}">
                 <input type="hidden" name="correct_answer" value="{{ correct_answer }}">
                 <input type="hidden" name="question_number" value="{{ question_number }}">
                 <input type="hidden" name="correct_count" value="{{ correct_count }}">
                 <input type="hidden" name="total_questions" value="{{ total_questions }}">
-                <button type="submit" {% if is_correct is not None %} disabled {% endif %}>Submit</button>
+
+                <!-- Submit answer button -->
+                <button type="submit" name="action" value="submit_answer" 
+                        {% if is_correct is not None %} disabled {% endif %}>Submit</button>
             </form>
 
             <!-- Display the correct answer and the user's answer -->
             {% if is_correct is not None %}
                 <p>The correct answer was: {{ correct_answer }}.</p>
                 <p>Your answer: {{ user_answer }}</p>
-            {% endif %}
-
-            <!-- Self-grading buttons -->
-            {% if is_correct is not None %}
-                <form method="POST" action="{% url 'self_grade' %}">
+                
+                <!-- Self-grading options -->
+                <form method="POST">
                     {% csrf_token %}
-                    <input type="hidden" name="grade" value="correct">
-                    <button type="submit">I was correct</button>
-                </form>
-                <form method="POST" action="{% url 'self_grade' %}">
-                    {% csrf_token %}
-                    <input type="hidden" name="grade" value="incorrect">
-                    <button type="submit">I was incorrect</button>
+                    <button type="submit" name="grade" value="correct">I was correct</button>
+                    <button type="submit" name="grade" value="incorrect">I was incorrect</button>
                 </form>
             {% endif %}
         </section>
