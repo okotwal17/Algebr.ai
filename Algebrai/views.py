@@ -147,17 +147,17 @@ class ExponentialFunctionsView(TemplateView):
 class PracticeTestView(TemplateView):
     template_name = 'practiceTest.html'
 
-    def generate_ai_question(self, difficulty):
+    def generate_ai_question(self, difficulty,topic):
         """Generate a question based on difficulty."""
         response = ollama.chat(model='gemma:2b', messages=[
-            {'role': 'user', 'content': f'Generate a {difficulty} algebra question. Just provide the question without any additional text.'}
+            {'role': 'user', 'content': f'Generate a {difficulty} algebra question with the topic of {topic}. Just provide the question without any additional text.'}
         ])
         return response['message']['content']
 
     def get_ai_answer(self, question):
         """Get the answer to the question."""
         response = ollama.chat(model='gemma:2b', messages=[
-            {'role': 'user', 'content': f'Solve this algebra question: {question}. Provide just the answer without any explanation.'}
+            {'role': 'user', 'content': f'Solve this algebra question: {question}. Provide the explanation and steps you took to solve it.'}
         ])
         return response['message']['content']
 
