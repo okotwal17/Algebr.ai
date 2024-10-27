@@ -164,24 +164,23 @@ class PracticeTestView(TemplateView):
     def post(self, request, *args, **kwargs):
         user_answer = request.POST.get('user_answer', '')
         question_number = int(request.POST.get('question_number', 1))
-        question_difficulty = request.POST.get('question_difficulty', 'easy')
-        correct_answer = request.POST.get('correct_answer', '')
+        question_difficulty = request.POST.get('question_difficulty', 'Easy')
         correct_count = int(request.POST.get('correct_count', 0))
         total_questions = int(request.POST.get('total_questions', 10))
-
-        # Check if answer is correct
-        is_correct = user_answer.strip().lower() == correct_answer.strip().lower()
+        concept=request.POST.get('topic','')
+        questionOnScreen=self.generate_ai_question(question_difficulty,concept)
+        correctAnswer=self.get_ai_answer(questionOnScreen)
 
         # Prepare data for rendering
         context = {
-            'question_text': request.POST.get('question_text', ''),
+            'question_text': questionOnScreen,
             'user_answer': user_answer,
-            'correct_answer': correct_answer,
-            'is_correct': is_correct,
+            'correct_answer': correctAnswer,
             'question_number': question_number,
             'correct_count': correct_count,
             'total_questions': total_questions,
-            'difficulty': question_difficulty
+            'difficulty': question_difficulty,
+            'topic':concept,
         }
 
         # Handle self-grading (After showing answer)
@@ -189,23 +188,27 @@ class PracticeTestView(TemplateView):
             # Update correct count based on self-grading
             if request.POST['grade'] == 'correct':
                 context['correct_count'] += 1
-            context['is_correct'] = None  # Reset correctness for new question
+                context['question_number']+=1
+                context['correct_count']+=1
+                if(context['difficulty']=='Easy'):
+                    context['difficulty']='Medium'
+                else:
+                    context['difficulty']='Hard'
 
-        else:
-            # Update correct count if the answer was correct
-            if is_correct:
-                context['correct_count'] += 1
-
+            else:
+                context['correct_count']+=0
+                context['question_number']+=1
+                if(context['difficulty']=='Hard'):
+                    context['difficulty']='Medium'
+                else:
+                    context['difficulty']='Easy'
         # Check if the test is completed
-        if question_number >= total_questions:
-            return render(request, 'results.html', {'correct_count': context['correct_count'], 'total_questions': total_questions})
 
-        # Prepare for next question if continuing
-        question_number += 1
-        question_difficulty = 'easy' if question_difficulty == 'easy' else 'medium' if question_difficulty == 'medium' else 'hard'
-        
+        if question_number >= total_questions:
+            return render(request, 'results.html', {'correct_count': context['correct_count'], 'total_questions': context['total_questions']})
+
         # Generate next question and answer
-        next_question = self.generate_ai_question(question_difficulty)
+        next_question = self.generate_ai_question(question_difficulty,concept)
         next_correct_answer = self.get_ai_answer(next_question)
         
         # Update context for the next question
@@ -220,8 +223,8 @@ class PracticeTestView(TemplateView):
         return render(request, 'practiceTest.html', context)
 
     def get(self, request, *args, **kwargs):
-        total_questions = 10  # Set total questions dynamically if needed
-        question_difficulty = 'easy'  # Start with easy questions
+        total_questions = request.GET.get('total_questions')  # Set total questions dynamically if needed
+        question_difficulty = 'Easy'  # Start with easy questions
         question_text = self.generate_ai_question(question_difficulty)
         correct_answer = self.get_ai_answer(question_text)
 
@@ -232,7 +235,6 @@ class PracticeTestView(TemplateView):
             'correct_count': 0,
             'total_questions': total_questions,
             'difficulty': question_difficulty,
-            'is_correct': None,
             'user_answer': ''
         })
 

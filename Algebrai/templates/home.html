@@ -48,7 +48,7 @@
        <!-- Practice Test Section -->
 <section id="practice-test" class="swipe-section">
     <h2>Generate Your Practice Test</h2>
-    <form action="{% url 'practiceTest' %}" method="POST">
+    <form action="{% url 'practiceTest' %}?topic=topic&total_questions=total_questions" method="POST">
         {% csrf_token %}
         <!-- Topic Selection -->
         <label for="topic">Choose an algebra topic:</label>

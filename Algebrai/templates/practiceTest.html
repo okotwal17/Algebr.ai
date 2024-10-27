@@ -12,7 +12,7 @@
     <div class="container">
         <header>
             <h1>Algebra Practice Test</h1>
-            <p>Question Difficulty: {{ difficulty }} | Total Correct: {{ correct_count }} / {{ total_questions }}</p>
+            <p>Question Difficulty: {{ difficulty }} | Total Correct: {{ correct_count }} / {{ total_questions }} | Topic:{{topic}}</p>
             <h2>Question {{ question_number }}</h2>
         </header>
         <section>
@@ -26,7 +26,6 @@
                     name="user_answer" 
                     placeholder="Your answer" 
                     value="{{ user_answer }}"  
-                    {% if is_correct is not None %} disabled {% endif %}>
 
                 <!-- Hidden fields to keep track of state -->
                 <input type="hidden" name="question_difficulty" value="{{ difficulty }}">
@@ -37,11 +36,10 @@
 
                 <!-- Submit answer button -->
                 <button type="submit" name="action" value="submit_answer" 
-                        {% if is_correct is not None %} disabled {% endif %}>Submit</button>
+                       disabled>Submit</button>
             </form>
 
             <!-- Display the correct answer and the user's answer -->
-            {% if is_correct is not None %}
                 <p>The correct answer was: {{ correct_answer }}.</p>
                 <p>Your answer: {{ user_answer }}</p>
                 
@@ -51,7 +49,6 @@
                     <button type="submit" name="grade" value="correct">I was correct</button>
                     <button type="submit" name="grade" value="incorrect">I was incorrect</button>
                 </form>
-            {% endif %}
         </section>
     </div>
 </body>
