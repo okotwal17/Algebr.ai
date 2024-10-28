@@ -147,18 +147,20 @@ class ExponentialFunctionsView(TemplateView):
 class PracticeTestView(TemplateView):
     template_name = 'practiceTest.html'
 
-    def generate_ai_question(self, difficulty,topic):
+    def generate_ai_question(self, difficulty, topic):
         """Generate a question based on difficulty."""
-        response = ollama.chat(model='gemma:2b', messages=[
-            {'role': 'user', 'content': f'Generate a {difficulty} algebra question with the topic of {topic}. Just provide the question without any additional text.'}
-        ])
+        response = ollama.chat(model='gemma:2b', messages=[{
+            'role': 'user',
+            'content': f'Generate a {difficulty} algebra question with the topic of {topic}. Just provide the question without any additional text.'
+        }])
         return response['message']['content']
 
     def get_ai_answer(self, question):
         """Get the answer to the question."""
-        response = ollama.chat(model='gemma:2b', messages=[
-            {'role': 'user', 'content': f'Solve this algebra question: {question}. Provide the explanation and steps you took to solve it.'}
-        ])
+        response = ollama.chat(model='gemma:2b', messages=[{
+            'role': 'user',
+            'content': f'Solve this algebra question: {question}. Provide the explanation and steps you took to solve it.'
+        }])
         return response['message']['content']
 
     def post(self, request, *args, **kwargs):
@@ -167,65 +169,49 @@ class PracticeTestView(TemplateView):
         question_difficulty = request.POST.get('question_difficulty', 'Easy')
         correct_count = int(request.POST.get('correct_count', 0))
         total_questions = int(request.POST.get('total_questions', 10))
-        concept=request.POST.get('topic','')
-        questionOnScreen=self.generate_ai_question(question_difficulty,concept)
-        correctAnswer=self.get_ai_answer(questionOnScreen)
+        topic = request.POST.get('topic', '')
 
-        # Prepare data for rendering
-        context = {
-            'question_text': questionOnScreen,
-            'user_answer': user_answer,
-            'correct_answer': correctAnswer,
-            'question_number': question_number,
-            'correct_count': correct_count,
-            'total_questions': total_questions,
-            'difficulty': question_difficulty,
-            'topic':concept,
-        }
-
-        # Handle self-grading (After showing answer)
+        # Check if grading is submitted
         if 'grade' in request.POST:
-            # Update correct count based on self-grading
             if request.POST['grade'] == 'correct':
-                context['correct_count'] += 1
-                context['question_number']+=1
-                context['correct_count']+=1
-                if(context['difficulty']=='Easy'):
-                    context['difficulty']='Medium'
+                correct_count += 1
+                if question_difficulty == 'Easy':
+                    question_difficulty = 'Medium'
+                elif question_difficulty == 'Medium':
+                    question_difficulty = 'Hard'
                 else:
-                    context['difficulty']='Hard'
+                    question_difficulty = 'Hard'
+            question_number += 1
 
-            else:
-                context['correct_count']+=0
-                context['question_number']+=1
-                if(context['difficulty']=='Hard'):
-                    context['difficulty']='Medium'
-                else:
-                    context['difficulty']='Easy'
-        # Check if the test is completed
 
-        if question_number >= total_questions:
-            return render(request, 'results.html', {'correct_count': context['correct_count'], 'total_questions': context['total_questions']})
+        # Generate new question if not at the end
+        if question_number <= total_questions:
+            question_on_screen = self.generate_ai_question(question_difficulty, topic)
+            correct_answer = self.get_ai_answer(question_on_screen)
 
-        # Generate next question and answer
-        next_question = self.generate_ai_question(question_difficulty,concept)
-        next_correct_answer = self.get_ai_answer(next_question)
+            context = {
+                'question_text': question_on_screen,
+                'correct_answer': correct_answer,
+                'question_number': question_number,
+                'correct_count': correct_count,
+                'total_questions': total_questions,
+                'difficulty': question_difficulty,
+                'topic': topic,
+                'user_answer': '',  # Clear the user answer for the next question
+            }
+
+            return render(request, self.template_name, context)
+        else:
+            return render()
         
-        # Update context for the next question
-        context.update({
-            'question_text': next_question,
-            'correct_answer': next_correct_answer,
-            'question_number': question_number,
-            'difficulty': question_difficulty,
-            'user_answer': ''
-        })
-
-        return render(request, 'practiceTest.html', context)
+        # If the test is completed, show results
+        return render(request, 'results.html', {'correct_count': correct_count, 'total_questions': total_questions})
 
     def get(self, request, *args, **kwargs):
-        total_questions = request.GET.get('total_questions')  # Set total questions dynamically if needed
+        topic = request.GET.get('topic', '')
+        total_questions = int(request.GET.get('total_questions', 10))  # Default to 10 if not specified
         question_difficulty = 'Easy'  # Start with easy questions
-        question_text = self.generate_ai_question(question_difficulty)
+        question_text = self.generate_ai_question(question_difficulty, topic)
         correct_answer = self.get_ai_answer(question_text)
 
         return render(request, self.template_name, {
@@ -238,8 +224,9 @@ class PracticeTestView(TemplateView):
             'user_answer': ''
         })
 
+
 class ResultsView(TemplateView):
-    template_name = 'results.html'  # Specify the template for the practice test
+    template_name = 'results.html'  # Specify the template for the results
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
