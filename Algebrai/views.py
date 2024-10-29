@@ -164,7 +164,6 @@ class PracticeTestView(TemplateView):
         return response['message']['content']
 
     def post(self, request, *args, **kwargs):
-        user_answer = request.POST.get('user_answer', '')
         question_number = int(request.POST.get('question_number', 1))
         question_difficulty = request.POST.get('question_difficulty', 'Easy')
         correct_count = int(request.POST.get('correct_count', 0))
@@ -202,11 +201,10 @@ class PracticeTestView(TemplateView):
 
             return render(request, self.template_name, context)
         else:
-            return render()
-        
-        # If the test is completed, show results
-        return render(request, 'results.html', {'correct_count': correct_count, 'total_questions': total_questions})
+            return render(request, 'results.html', {'correct_count': correct_count, 'total_questions': total_questions})
 
+        
+        # If the test is completed, show results        
     def get(self, request, *args, **kwargs):
         topic = request.GET.get('topic', '')
         total_questions = int(request.GET.get('total_questions', 10))  # Default to 10 if not specified

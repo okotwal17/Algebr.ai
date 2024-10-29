@@ -13,7 +13,8 @@
             <h1>Practice Test Results</h1>
         </header>
         <section>
-            <h2>Your Results: If you see this, its working!!!!!!</h2>
+            <h2>If you see this, its working!!!!!!</h2>
+            <h2>Your Results: {{ correct_count }} / {{ total_questions }}</h2>
             
             <button><a href="{% url 'home' %}">Return to Home</a></button>  <!-- Link to Home -->
         </section>
