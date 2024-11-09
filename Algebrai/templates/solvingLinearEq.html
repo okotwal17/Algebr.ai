@@ -21,8 +21,8 @@
    <header>
        <h1>Solving Linear Equations</h1>
        <div class="back-link">
-        <a href="{% url 'home' %}">Back to Home</a>
-    </div>
+           <a href="{% url 'home' %}">Back to Home</a>
+       </div>
    </header>
 
    <div class="container">
@@ -31,12 +31,29 @@
            <h2>What is a Linear Equation?</h2>
            <p>A linear equation is an equation where the highest exponent of the variable (usually x) is 1. It represents a straight line when plotted on a graph.</p>
        </section>
-       <iframe class="vid" width="560" height="315" 
-        src="https://www.youtube.com/embed/bAerID24QJ0?start=423" 
-        frameborder="0" 
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-        allowfullscreen>
+
+       <!-- First Embedded Video -->
+      <!-- Section for Embedded Videos Side-by-Side -->
+<div class="videos-side-by-side">
+    <div class="video-container">
+        <iframe class="vid" width="560" height="315" 
+            src="https://www.youtube.com/embed/bAerID24QJ0?start=423" 
+            frameborder="0" 
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+            allowfullscreen>
         </iframe>
+    </div>
+
+    <div class="video-container">
+        <iframe class="vid" width="560" height="315" 
+            src="https://www.youtube.com/embed/DopnmxeMt-s" 
+            frameborder="0" 
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+            allowfullscreen>
+        </iframe>
+    </div>
+</div>
+
        <!-- Basic Example Section -->
        <section class="swipe-section">
            <h2>Basic Example</h2>

@@ -14,9 +14,20 @@ body {
     padding: 20px;
 }
 
-.vid{
-    text-align: center;
+.video-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 20px; /* Space between the videos */
+    max-width: 100%; /* Allows container to take full width of page */
 }
+
+.vid {
+    width: 45%; /* Set each video to less than 50% of the container to fit side by side */
+    height: 315px;
+}
+
+
 
 header {
     position: relative;
