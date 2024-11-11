@@ -1,145 +1,164 @@
-/* Global Reset and Base Styles */
-* {
+/* General Styling */
+body {
+    font-family: 'Arial', sans-serif;
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
-    font-family: Arial, sans-serif;
+    background-color: #0d47a1;
+    color: white;
+    overflow-x: hidden;
 }
 
-body, html {
-    height: 100%;
-    overflow: hidden;
-}
-
-body {
-    background-color: #6bb3ff; /* Lighter Blue background */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-}
-
-/* Bubble styles with spherical effect */
-.bubble {
-    position: absolute;
-    background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.1));
-    border-radius: 50%;
-    pointer-events: none;
-    opacity: 0;
-    transition: opacity 0.5s ease;
-    animation: float 8s ease-in-out forwards, fadeIn 0.5s ease forwards; /* Add floating and fading animation */
-}
-
-/* Keyframes for floating animation */
-@keyframes float {
-    0% {
-        transform: translateY(0);
-        opacity: 1;
-    }
-    100% {
-        transform: translateY(-50px); /* Move the bubble upwards */
-        opacity: 0;
-    }
-}
-
-/* Keyframes for fading in effect */
-@keyframes fadeIn {
-    0% {
-        opacity: 0;
-    }
-    100% {
-        opacity: 1;
-    }
-}
-
-@keyframes fadeOut {
-    0% {
-        opacity: 0;
-    }
-    100% {
-        opacity: 1;
-    }
-}
-
-.bubble:hover {
-    opacity: 0;  /* Bubbles will disappear on hover */
-    transition: opacity 0.2s ease;
-}
-
-/* Container styling */
 .container {
-    background-color: #fff;
+    max-width: 800px;
+    margin: 0 auto;
     padding: 40px;
-    border-radius: 10px;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
     text-align: center;
-    max-width: 400px;
-    width: 100%;
-    z-index: 1;
 }
 
 h1 {
-    color: #333;
-    margin-bottom: 20px;
-    font-size: 24px;
+    font-size: 2.8em;
+    margin: 20px 0;
+    color: #ffffff;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.4);
+    animation: fadeIn 2s ease-in-out;
 }
 
 .welcome-text {
-    color: #555;
+    font-size: 1.2em;
     margin-bottom: 30px;
+    color: #cfd8dc;
 }
 
-.login-box h2 {
+/* Login Box Styling */
+.login-box {
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(10px);
+    animation: slideUp 1s ease-in-out;
+}
+
+h2 {
+    font-size: 2em;
     margin-bottom: 20px;
-    color: #444;
-    font-size: 20px;
-}
-
-form {
-    display: flex;
-    flex-direction: column;
-    align-items: stretch;
 }
 
 label {
+    display: block;
     font-weight: bold;
-    margin-bottom: 5px;
-    color: #333;
+    margin-top: 15px;
+    color: #ffffff;
+    text-align: left;
 }
 
-input {
+input[type="text"],
+input[type="password"] {
     padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    margin-bottom: 20px;
-    font-size: 16px;
     width: 100%;
-}
-
-button {
-    padding: 10px;
-    background-color: #0056b3;
-    color: #fff;
+    max-width: 300px;
+    margin: 10px 0;
     border: none;
     border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
+    background-color: #ffffff;
+    color: #333;
+    font-size: 1em;
     transition: background-color 0.3s ease;
 }
 
+input[type="text"]:hover,
+input[type="password"]:hover {
+    background-color: #eeeeee;
+}
+
+button {
+    padding: 12px 30px;
+    background-color: #f629c3;
+    border: none;
+    color: white;
+    border-radius: 50px;
+    cursor: pointer;
+    font-size: 1.1em;
+    transition: background-color 0.4s ease, transform 0.4s ease;
+    margin-top: 20px;
+}
+
 button:hover {
-    background-color: #003f8a;
+    background-color: #c702d1;
+    transform: scale(1.1);
 }
 
 .note {
-    margin-top: 10px;
-    color: #777;
-    font-size: 14px;
+    font-size: 0.9em;
+    color: #cfd8dc;
+    margin-top: 15px;
 }
 
+/* Error Messages Styling */
 .error-messages {
-    color: red; /* Change text color to red for visibility */
-    list-style-type: none; /* Remove bullet points */
-    margin: 10px 0; /* Add some spacing */
-    padding: 0; /* Remove default padding */
+    list-style-type: none;
+    padding: 0;
+    margin: 20px 0;
+}
+
+.error-messages li {
+    background-color: #ff5252;
+    padding: 10px;
+    margin: 5px 0;
+    border-radius: 5px;
+    color: white;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(30px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Background Bubble Effects */
+.background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    overflow: hidden;
+}
+
+.bubble {
+    position: absolute;
+    bottom: -100px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    pointer-events: none;
+    animation: rise var(--time) linear infinite;
+    width: var(--size);
+    height: var(--size);
+    left: var(--position);
+    animation-delay: var(--delay);
+}
+
+@keyframes rise {
+    from {
+        transform: translateY(0);
+    }
+    to {
+        transform: translateY(-200vh);
+    }
 }
