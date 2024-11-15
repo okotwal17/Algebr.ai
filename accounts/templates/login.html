@@ -9,30 +9,31 @@
     <script defer src="{% static 'javascript/login.js' %}"></script>
 </head>
 <body>
+    <!-- Background and bubble effects -->
+    <div class="background-overlay"></div>
+
     <!-- Container for login form and content -->
     <div class="container">
         <h1>Welcome to Algebr.ai!!</h1>
         <p class="welcome-text">Your personalized platform to learn, practice, and excel in Algebra!</p>
 
-        <!-- Error message block (added dynamically from messages) -->
+        <!-- Error message block -->
         {% if messages %}
         <ul class="error-messages">
             {% for message in messages %}
-            <li class="{{ message.tags }}">{{ message }}</li>  <!-- Dynamically adds class tags like 'error' -->
+            <li class="{{ message.tags }}">{{ message }}</li>
             {% endfor %}
         </ul>
         {% endif %}
         
         <div class="login-box">
             <h2>Login to Your Account</h2>
-            <form id="login-form" method="POST">
+            <form id="login-form" method="POST" action="{% url 'login' %}">
                 {% csrf_token %}
                 <label for="username">Username:</label>
                 <input type="text" id="username" name="username" placeholder="Enter your username" required>
-               
                 <label for="password">Password:</label>
                 <input type="password" id="password" name="password" placeholder="Enter your password" required>
-               
                 <button type="submit">Login</button>
                 <p class="note">New here? Sign up with your teacher to get started!</p>
             </form>
