@@ -3,19 +3,21 @@ body {
     font-family: 'Arial', sans-serif;
     margin: 0;
     padding: 0;
-    background: linear-gradient(145deg, #0d47a1, #0c39a4);
+    background: linear-gradient(145deg, #0e2a47, #193c5b);
     color: white;
     overflow: hidden;
     display: flex;
     align-items: center;
     justify-content: center;
     height: 100vh;
+    position: relative;
 }
 
+/* Container Alignment */
 .container {
-    max-width: 500px;
+    max-width: 400px;
     width: 100%;
-    padding: 40px;
+    padding: 30px;
     text-align: center;
     position: relative;
     z-index: 10;
@@ -24,86 +26,80 @@ body {
     align-items: center;
 }
 
-/* Background overlay */
+/* Background overlay for depth */
 .background-overlay {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(13, 71, 161, 0.8);
+    background: rgba(0, 0, 0, 0.6);
     z-index: -1;
 }
 
 /* Title and welcome text */
 h1 {
     font-size: 2.2em;
-    color: #ffffff;
-    text-shadow: 3px 3px 12px rgba(0, 0, 0, 0.5);
+    color: #f0f8ff;
+    text-shadow: 0 0 12px rgba(255, 255, 255, 0.5);
     animation: fadeIn 2s ease-in-out;
-    margin-bottom: 10px;
+    margin-bottom: 15px;
 }
 
 .welcome-text {
-    font-size: 1em;
+    font-size: 1.1em;
     margin-bottom: 20px;
-    color: #cfd8dc;
+    color: #d3ebf5;
+    text-shadow: 0 0 6px rgba(255, 255, 255, 0.3);
 }
 
 /* Login Box Styling */
 .login-box {
     width: 100%;
     max-width: 400px;
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.2);
     padding: 20px;
-    border-radius: 12px;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
-    backdrop-filter: blur(12px);
-    animation: slideUp 1.2s ease-in-out;
+    border-radius: 15px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(15px);
+    animation: slideUp 1.5s ease-in-out;
     text-align: left;
 }
 
-h2 {
-    font-size: 1.8em;
-    color: #f7b7f5;
-    margin-bottom: 15px;
-    text-shadow: 0 0 5px #ffffff;
-    text-align: center;
-}
-
-/* Form elements */
+/* Form Styling */
 label {
     display: block;
     font-weight: bold;
-    color: #e3f2fd;
+    color: #ffffff;
     margin-top: 15px;
     text-align: left;
 }
 
 input[type="text"], input[type="password"] {
-    padding: 10px;
+    padding: 12px;
     width: 100%;
-    margin: 8px 0;
+    margin: 10px 0;
     border: none;
     border-radius: 8px;
-    background-color: #ffffff;
+    background-color: rgba(255, 255, 255, 0.9);
     color: #333;
     font-size: 1em;
-    transition: box-shadow 0.3s ease;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 input[type="text"]:focus, input[type="password"]:focus {
-    box-shadow: 0 0 8px rgba(255, 255, 255, 0.8);
+    transform: scale(1.02);
+    box-shadow: 0 0 8px rgba(0, 153, 255, 0.8);
 }
 
-/* Login button */
+/* Button Styling */
 button {
     padding: 12px;
     width: 100%;
-    background: linear-gradient(145deg, #f629c3, #e601a1);
+    background: linear-gradient(145deg, #00d4ff, #006eff);
     color: white;
     border: none;
-    border-radius: 50px;
+    border-radius: 25px;
     font-size: 1em;
     margin-top: 20px;
     cursor: pointer;
@@ -112,10 +108,10 @@ button {
 
 button:hover {
     transform: scale(1.05);
-    box-shadow: 0 4px 12px rgba(246, 41, 195, 0.6);
+    box-shadow: 0 6px 15px rgba(0, 222, 255, 0.8);
 }
 
-/* Error message styling */
+/* Error Message Styling */
 .error-messages {
     list-style: none;
     padding: 0;
@@ -123,15 +119,15 @@ button:hover {
 }
 
 .error-messages li {
-    background-color: #ff5252;
+    background-color: #ff4444;
     padding: 8px;
     margin: 5px 0;
-    border-radius: 5px;
+    border-radius: 8px;
     color: white;
     text-align: center;
 }
 
-/* Background Bubble Effects */
+/* Wavy Background Animation */
 .background {
     position: fixed;
     top: 0;
@@ -140,37 +136,67 @@ button:hover {
     height: 100%;
     z-index: -2;
     overflow: hidden;
+    background: linear-gradient(180deg, #0d47a1, #1a237e);
+    animation: wave 8s infinite linear;
 }
 
+@keyframes wave {
+    0% {
+        background-position: 0% 0%;
+    }
+    100% {
+        background-position: 100% 0%;
+    }
+}
+
+/* Bubble Effects */
 .bubble {
     position: absolute;
     bottom: -100px;
     background: rgba(255, 255, 255, 0.15);
     border-radius: 50%;
-    animation: rise var(--time) linear infinite, sway 3s ease-in-out infinite alternate;
+    animation: rise var(--time) linear infinite, sway 4s ease-in-out infinite alternate;
     width: var(--size);
     height: var(--size);
     left: var(--position);
     animation-delay: var(--delay);
 }
 
-/* Animations */
-@keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
-}
-
-@keyframes slideUp {
-    from { transform: translateY(40px); opacity: 0; }
-    to { transform: translateY(0); opacity: 1; }
-}
-
 @keyframes rise {
-    from { transform: translateY(0); }
-    to { transform: translateY(-200vh); }
+    from {
+        transform: translateY(0);
+    }
+    to {
+        transform: translateY(-200vh);
+    }
 }
 
 @keyframes sway {
-    from { transform: translateX(0); }
-    to { transform: translateX(20px); }
+    from {
+        transform: translateX(0);
+    }
+    to {
+        transform: translateX(20px);
+    }
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(60px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
 }
