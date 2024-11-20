@@ -2,7 +2,10 @@ from django.views.generic import TemplateView
 from django.template import loader
 from django.shortcuts import render  # Import render
 from django.http import HttpResponse
-import ollama
+from openai import OpenAI
+
+client = OpenAI(api_key="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")
+
 
 # Home page view
 class HomeView(TemplateView):
@@ -92,7 +95,7 @@ class SystemsOfEquationsView(TemplateView):
         template = loader.get_template(self.template_name)
         context = self.get_context_data(**kwargs)
         return HttpResponse(template.render(context, request))
-    
+
 class PolynomialsView(TemplateView):
     template_name = 'polynomials.html'  # Specify the template for polynomials
 
@@ -104,7 +107,7 @@ class PolynomialsView(TemplateView):
         template = loader.get_template(self.template_name)
         context = self.get_context_data(**kwargs)
         return HttpResponse(template.render(context, request))
-    
+
 
 class RationalExpressionsView(TemplateView):
     template_name = 'rationalExpressions.html'  # Specify the template for rational expressions
@@ -117,7 +120,7 @@ class RationalExpressionsView(TemplateView):
         template = loader.get_template(self.template_name)
         context = self.get_context_data(**kwargs)
         return HttpResponse(template.render(context, request))
-    
+
 
 class InequalitiesView(TemplateView):
     template_name = 'inequalities.html'  # Specify the template for inequalities
@@ -144,24 +147,39 @@ class ExponentialFunctionsView(TemplateView):
         return HttpResponse(template.render(context, request))
 
 # View for the Practice Test page
+
 class PracticeTestView(TemplateView):
     template_name = 'practiceTest.html'
 
     def generate_ai_question(self, difficulty, topic):
         """Generate a question based on difficulty."""
-        response = ollama.chat(model='gemma:2b', messages=[{
-            'role': 'user',
-            'content': f'Generate a {difficulty} algebra question with the topic of {topic}. Just provide the question without any additional text.'
-        }])
-        return response['message']['content']
+        response = client.chat.completions.create(model="gpt-3.5-turbo",
+        messages=[
+            {
+                "role": "system",
+                "content": "You are an expert math question generator.",
+            },
+            {
+                "role": "user",
+                "content": f"Generate a {difficulty} algebra question with the topic of {topic}. Just provide the question without any additional text."
+            },
+        ])
+        return response.choices[0].message.content.strip()
 
     def get_ai_answer(self, question):
         """Get the answer to the question."""
-        response = ollama.chat(model='gemma:2b', messages=[{
-            'role': 'user',
-            'content': f'Solve this algebra question: {question}. Provide the explanation and steps you took to solve it.'
-        }])
-        return response['message']['content']
+        response = client.chat.completions.create(model="gpt-3.5-turbo",
+        messages=[
+            {
+                "role": "system",
+                "content": "You are an expert math problem solver. Provide clear and concise explanations.",
+            },
+            {
+                "role": "user",
+                "content": f"Solve this algebra question: {question}. Provide the explanation and steps you took to solve it."
+            },
+        ])
+        return response.choices[0].message.content.strip()
 
     def post(self, request, *args, **kwargs):
         question_number = int(request.POST.get('question_number', 1))
@@ -181,7 +199,6 @@ class PracticeTestView(TemplateView):
                 else:
                     question_difficulty = 'Hard'
             question_number += 1
-
 
         # Generate new question if not at the end
         if question_number <= total_questions:
@@ -203,8 +220,7 @@ class PracticeTestView(TemplateView):
         else:
             return render(request, 'results.html', {'correct_count': correct_count, 'total_questions': total_questions})
 
-        
-        # If the test is completed, show results        
+    # If the test is completed, show results
     def get(self, request, *args, **kwargs):
         topic = request.GET.get('topic', '')
         total_questions = int(request.GET.get('total_questions', 10))  # Default to 10 if not specified
@@ -221,6 +237,7 @@ class PracticeTestView(TemplateView):
             'difficulty': question_difficulty,
             'user_answer': ''
         })
+
 
 
 class ResultsView(TemplateView):
