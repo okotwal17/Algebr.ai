@@ -176,7 +176,7 @@ class PracticeTestView(TemplateView):
             },
             {
                 "role": "user",
-                "content": f"Solve this algebra question: {question}. Provide the explanation and steps you took to solve it."
+                "content": f"Solve this algebra question: {question}. Provide the explanation in at max 3 sentences. "
             },
         ])
         return response.choices[0].message.content.strip()
