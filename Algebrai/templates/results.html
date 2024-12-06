@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Test Results</title>
-    <link rel="stylesheet" href="{% static 'home.css' %}">  <!-- Include home.css -->
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
 </head>
 <body>
     <div class="container">
@@ -13,7 +13,6 @@
             <h1>Practice Test Results</h1>
         </header>
         <section>
-            <h2>If you see this, its working!!!!!!</h2>
             <h2>Your Results: {{ correct_count }} / {{ total_questions }}</h2>
             
             <button><a href="{% url 'home' %}">Return to Home</a></button>  <!-- Link to Home -->
