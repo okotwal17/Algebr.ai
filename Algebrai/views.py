@@ -148,47 +148,67 @@ class ExponentialFunctionsView(TemplateView):
 
 # View for the Practice Test page
 
+from django.shortcuts import render
+from django.views.generic import TemplateView
+from django.utils.html import escape
+import re
+
+
 class PracticeTestView(TemplateView):
     template_name = 'practiceTest.html'
 
     def generate_ai_question(self, difficulty, topic):
-        """Generate a question based on difficulty."""
-        response = client.chat.completions.create(model="gpt-3.5-turbo",
-        messages=[
-            {
-                "role": "system",
-                "content": "You are an expert math question generator.",
-            },
-            {
-                "role": "user",
-                "content": f"Generate a {difficulty} algebra question with the topic of {topic}. Just provide the question without any additional text."
-            },
-        ])
+        """Generate a question based on difficulty and topic."""
+        response = client.chat.completions.create(
+            model="gpt-3.5-turbo",
+            messages=[
+                {"role": "system", "content": "You are an expert math question generator."},
+                {
+                    "role": "user",
+                    "content": f"Generate a {difficulty} algebra question with the topic of {topic}. "
+                               "Format fractions in LaTeX as \\frac{{numerator}}{{denominator}}. "
+                               "Only provide the question text, no explanations or additional text.",
+                },
+            ],
+        )
         return response.choices[0].message.content.strip()
 
     def get_ai_answer(self, question):
-        """Get the answer to the question."""
-        response = client.chat.completions.create(model="gpt-3.5-turbo",
-        messages=[
-            {
-                "role": "system",
-                "content": "You are an expert math problem solver. Provide clear and concise explanations.",
-            },
-            {
-                "role": "user",
-                "content": f"Solve this algebra question: {question}. Provide the explanation in at max 3 sentences. "
-            },
-        ])
+        """Get the answer to the generated question."""
+        response = client.chat.completions.create(
+            model="gpt-3.5-turbo",
+            messages=[
+                {"role": "system", "content": "You are an expert math problem solver. Use LaTeX for fractions."},
+                {
+                    "role": "user",
+                    "content": f"Solve this algebra question: {question}. Provide the answer formatted in LaTeX "
+                               "and explain in at most 2 sentences.",
+                },
+            ],
+        )
         return response.choices[0].message.content.strip()
 
+    def format_latex(self, content):
+        """Convert raw LaTeX to MathJax-friendly escaped HTML."""
+        def replace_fraction(match):
+            numerator, denominator = match.groups()
+            return f"\\frac{{{numerator}}}{{{denominator}}}"
+
+        # Escape other content and format fractions
+        escaped_content = escape(content)
+        return re.sub(r"frac\{(\d+)\}\{(\d+)\}", replace_fraction, escaped_content)
+
     def post(self, request, *args, **kwargs):
+        """Handle form submissions."""
+        # Extract form data
         question_number = int(request.POST.get('question_number', 1))
         question_difficulty = request.POST.get('question_difficulty', 'Easy')
         correct_count = int(request.POST.get('correct_count', 0))
         total_questions = int(request.POST.get('total_questions', 10))
         topic = request.POST.get('topic', '')
+        user_answer = request.POST.get('user_answer', '')
 
-        # Check if grading is submitted
+        # Handle grading logic
         if 'grade' in request.POST:
             if request.POST['grade'] == 'correct':
                 correct_count += 1
@@ -196,48 +216,58 @@ class PracticeTestView(TemplateView):
                     question_difficulty = 'Medium'
                 elif question_difficulty == 'Medium':
                     question_difficulty = 'Hard'
-                else:
-                    question_difficulty = 'Hard'
             question_number += 1
 
-        # Generate new question if not at the end
-        if question_number <= total_questions:
-            question_on_screen = self.generate_ai_question(question_difficulty, topic)
-            correct_answer = self.get_ai_answer(question_on_screen)
-
-            context = {
-                'question_text': question_on_screen,
-                'correct_answer': correct_answer,
-                'question_number': question_number,
-                'correct_count': correct_count,
-                'total_questions': total_questions,
-                'difficulty': question_difficulty,
-                'topic': topic,
-                'user_answer': '',  # Clear the user answer for the next question
-            }
-
-            return render(request, self.template_name, context)
-        else:
+        # Check if test is complete
+        if question_number > total_questions:
             return render(request, 'results.html', {'correct_count': correct_count, 'total_questions': total_questions})
 
-    # If the test is completed, show results
-    def get(self, request, *args, **kwargs):
-        topic = request.GET.get('topic', '')
-        total_questions = int(request.GET.get('total_questions', 10))  # Default to 10 if not specified
-        question_difficulty = 'Easy'  # Start with easy questions
+        # Generate next question
         question_text = self.generate_ai_question(question_difficulty, topic)
         correct_answer = self.get_ai_answer(question_text)
 
-        return render(request, self.template_name, {
+        # Format for MathJax
+        question_text = self.format_latex(question_text)
+        correct_answer = self.format_latex(correct_answer)
+
+        # Prepare context for the template
+        context = {
+            'question_text': question_text,
+            'correct_answer': correct_answer,
+            'question_number': question_number,
+            'correct_count': correct_count,
+            'total_questions': total_questions,
+            'difficulty': question_difficulty,
+            'topic': topic,
+            'user_answer': user_answer,  # Preserve user input
+        }
+        return render(request, self.template_name, context)
+
+    def get(self, request, *args, **kwargs):
+        """Start a new test."""
+        # Initialize test parameters
+        topic = request.GET.get('topic', 'Algebra')
+        total_questions = int(request.GET.get('total_questions', 10))  # Default: 10 questions
+        question_difficulty = 'Easy'
+        question_text = self.generate_ai_question(question_difficulty, topic)
+        correct_answer = self.get_ai_answer(question_text)
+
+        # Format for MathJax
+        question_text = self.format_latex(question_text)
+        correct_answer = self.format_latex(correct_answer)
+
+        # Prepare initial context
+        context = {
             'question_text': question_text,
             'question_number': 1,
             'correct_answer': correct_answer,
             'correct_count': 0,
             'total_questions': total_questions,
             'difficulty': question_difficulty,
-            'user_answer': ''
-        })
-
+            'topic': topic,
+            'user_answer': '',  # Start fresh
+        }
+        return render(request, self.template_name, context)
 
 
 class ResultsView(TemplateView):
