@@ -7,7 +7,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Algebr.ai - Practice Test</title>
     <link rel="stylesheet" href="{% static 'css/home.css' %}">
-    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" async></script>
     <script>
         function handleSubmit(event) {
             event.preventDefault(); // Prevent the default form submission
@@ -30,7 +29,7 @@
             <h2>Question {{ question_number }}</h2>
         </header>
         <section>
-            <p>{{ question_text }}</p>
+            <p>$$ {{ question_text|safe }} $$</p>
             <form method="POST" onsubmit="handleSubmit(event)">
                 {% csrf_token %}
                 
@@ -58,7 +57,7 @@
 
             <!-- Display the correct answer -->
             <div id="correct-answer" style="display: none;">
-                <p>{{ correct_answer }}</p>
+                <p>{{ correct_answer|safe }} $$</p>
                 <p>Your answer: {{ user_answer }}</p>
             </div>
                 

@@ -166,8 +166,7 @@ class PracticeTestView(TemplateView):
                 {
                     "role": "user",
                     "content": f"Generate a {difficulty} algebra question with the topic of {topic}. "
-                               "Format fractions in LaTeX as \\frac{{numerator}}{{denominator}}. "
-                               "Only provide the question text, no explanations or additional text.",
+                               "Only provide the question text, no explanations or additional text. Make sure that there are no dollar signs when rendering.",
                 },
             ],
         )
