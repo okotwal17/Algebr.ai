@@ -177,10 +177,10 @@ class PracticeTestView(TemplateView):
         response = client.chat.completions.create(
             model="gpt-3.5-turbo",
             messages=[
-                {"role": "system", "content": "You are an expert math problem solver. Use LaTeX for fractions."},
+                {"role": "system", "content": "You are an expert math problem solver."},
                 {
                     "role": "user",
-                    "content": f"Solve this algebra question: {question}. Provide the answer formatted in LaTeX "
+                    "content": f"Solve this algebra question: {question}. "
                                "and explain in at most 2 sentences.",
                 },
             ],
