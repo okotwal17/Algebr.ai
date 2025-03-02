@@ -16,6 +16,11 @@ from decouple import config
 import openai
 from dotenv import load_dotenv
 
+# Load the environment variables from .env
+load_dotenv()
+
+# Get the API key from environment variable
+OPENAI_API_KEY = os.getenv('OPENAI_API_KEY')
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent

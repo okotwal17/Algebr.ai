@@ -4,7 +4,16 @@ from django.shortcuts import render  # Import render
 from django.http import HttpResponse
 from openai import OpenAI
 
-client = OpenAI(api_key="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")
+import os
+from dotenv import load_dotenv
+
+# Load environment variables from the .env file
+load_dotenv()
+
+# Now use the OpenAI API key from the .env file
+openai_api_key = os.getenv('OPENAI_API_KEY')
+
+client = OpenAI(api_key=openai_api_key)
 
 
 # Home page view
