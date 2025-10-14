@@ -43,4 +43,4 @@ Algebr.ai is an AI-powered platform designed to help students practice and maste
 - **Frontend**: HTML, CSS, JavaScript
 - **Backend**: Django
 - **AI Integration**: AI-powered Question Generation
-- **Database**: PostgreSQL, Firebase
+- **Database**: SQLite, Firebase
